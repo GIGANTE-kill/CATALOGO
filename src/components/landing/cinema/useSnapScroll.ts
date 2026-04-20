@@ -176,5 +176,11 @@ export function useSnapScroll({ sectionRef, steps, lockMs = 700 }: Options) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sectionRef, steps, lockMs]);
 
-  return { activeScene, progress };
+  const scrollToScene = (index: number) => {
+    const g = getGeometry();
+    if (!g) return;
+    snapTo(index, g.sectionTop);
+  };
+
+  return { activeScene, progress, scrollToScene };
 }

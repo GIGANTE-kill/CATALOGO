@@ -158,7 +158,7 @@ export function CinemaScroll() {
               <img
                 src={current.image}
                 alt={current.imageAlt}
-                className="max-h-[70vh] w-auto object-contain drop-shadow-2xl"
+                className="max-h-[91vh] w-auto object-contain drop-shadow-2xl"
                 loading="lazy"
               />
             </div>

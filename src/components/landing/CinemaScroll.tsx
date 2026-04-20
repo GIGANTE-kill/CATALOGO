@@ -164,8 +164,89 @@ export function CinemaScroll() {
 
     window.addEventListener("wheel", onWheel, { passive: false });
 
+    // Touch/swipe support for mobile
+    let touchStartY = 0;
+    let touchStartX = 0;
+    let touchActive = false;
+
+    const onTouchStart = (event: TouchEvent) => {
+      const el = sectionRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const sectionTop = window.scrollY + rect.top;
+      const sectionEnd = sectionTop + el.offsetHeight - window.innerHeight;
+      const currentY = window.scrollY;
+      const insideStickyRange = currentY >= sectionTop && currentY <= sectionEnd;
+      if (!insideStickyRange) return;
+      touchActive = true;
+      touchStartY = event.touches[0].clientY;
+      touchStartX = event.touches[0].clientX;
+    };
+
+    const onTouchMove = (event: TouchEvent) => {
+      if (!touchActive) return;
+      const deltaY = touchStartY - event.touches[0].clientY;
+      const deltaX = touchStartX - event.touches[0].clientX;
+      // Only block scroll if vertical swipe is dominant
+      if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 10) {
+        event.preventDefault();
+      }
+    };
+
+    const onTouchEnd = (event: TouchEvent) => {
+      if (!touchActive) return;
+      touchActive = false;
+
+      const el = sectionRef.current;
+      if (!el) return;
+
+      const touch = event.changedTouches[0];
+      const deltaY = touchStartY - touch.clientY;
+      const deltaX = touchStartX - touch.clientX;
+
+      // Ignore horizontal swipes or tiny gestures
+      if (Math.abs(deltaY) < 50 || Math.abs(deltaX) > Math.abs(deltaY)) return;
+
+      const rect = el.getBoundingClientRect();
+      const sectionTop = window.scrollY + rect.top;
+      const sectionEnd = sectionTop + el.offsetHeight - window.innerHeight;
+      const currentY = window.scrollY;
+      const insideStickyRange = currentY >= sectionTop && currentY <= sectionEnd;
+      if (!insideStickyRange) return;
+
+      const currentStep = Math.min(
+        scenes.length - 1,
+        Math.max(0, Math.round((currentY - sectionTop) / Math.max(window.innerHeight, 1))),
+      );
+      const nextStep = deltaY > 0 ? currentStep + 1 : currentStep - 1;
+
+      if (nextStep < 0 || nextStep > scenes.length - 1) return;
+      if (snapLockRef.current) return;
+
+      snapLockRef.current = true;
+      window.scrollTo({
+        top: sectionTop + nextStep * window.innerHeight,
+        behavior: "smooth",
+      });
+
+      if (snapTimeoutRef.current !== null) {
+        window.clearTimeout(snapTimeoutRef.current);
+      }
+      snapTimeoutRef.current = window.setTimeout(() => {
+        snapLockRef.current = false;
+        snapTimeoutRef.current = null;
+      }, 700);
+    };
+
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchmove", onTouchMove, { passive: false });
+    window.addEventListener("touchend", onTouchEnd, { passive: true });
+
     return () => {
       window.removeEventListener("wheel", onWheel);
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("touchend", onTouchEnd);
       if (snapTimeoutRef.current !== null) {
         window.clearTimeout(snapTimeoutRef.current);
       }

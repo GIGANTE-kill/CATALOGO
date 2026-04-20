@@ -142,26 +142,32 @@ export function CinemaScroll() {
             {current.extra}
           </div>
 
-          {/* AD FORMAT IMAGE */}
-          <div className="hidden md:flex justify-center items-center relative">
+          {/* AD FORMAT IMAGES (all preloaded, fade between) */}
+          <div className="hidden md:flex justify-center items-center relative h-[91vh]">
             <div
               className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[400px] h-[120px] rounded-full transition-all duration-700"
               style={{ background: current.glow, filter: "blur(80px)" }}
             />
-            <div
-              key={`img-${activeScene}`}
-              className="relative z-10 transition-all duration-700 ease-out animate-in fade-in zoom-in-95"
-              style={{
-                transform: `rotate(${current.rotate}deg) scale(${current.scale})`,
-              }}
-            >
-              <img
-                src={current.image}
-                alt={current.imageAlt}
-                className="max-h-[91vh] w-auto object-contain drop-shadow-2xl"
-                loading="lazy"
-              />
-            </div>
+            {scenes.map((s, i) => (
+              <div
+                key={i}
+                className="absolute inset-0 flex justify-center items-center transition-all duration-700 ease-out"
+                style={{
+                  opacity: i === activeScene ? 1 : 0,
+                  transform: `rotate(${i === activeScene ? s.rotate : 0}deg) scale(${i === activeScene ? s.scale : 0.92})`,
+                  pointerEvents: i === activeScene ? "auto" : "none",
+                }}
+              >
+                <img
+                  src={s.image}
+                  alt={s.imageAlt}
+                  className="max-h-[91vh] w-auto object-contain drop-shadow-2xl"
+                  loading="eager"
+                  decoding="async"
+                  fetchPriority={i === 0 ? "high" : "auto"}
+                />
+              </div>
+            ))}
           </div>
         </div>
 

@@ -105,7 +105,7 @@ export function CinemaScroll() {
         const scrolled = Math.min(Math.max(-rect.top, 0), total);
         const p = total > 0 ? scrolled / total : 0;
         setProgress(p);
-        const idx = Math.min(scenes.length - 1, Math.floor(p * scenes.length));
+        const idx = Math.min(scenes.length - 1, Math.floor(p * scenes.length * 0.999));
         setActiveScene(idx);
       });
     };

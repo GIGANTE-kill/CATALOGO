@@ -242,11 +242,83 @@ export function CinemaScroll() {
     window.addEventListener("touchmove", onTouchMove, { passive: false });
     window.addEventListener("touchend", onTouchEnd, { passive: true });
 
+    // Keyboard navigation (Arrow Up/Down, Page Up/Down, Space, Home, End)
+    const onKeyDown = (event: KeyboardEvent) => {
+      const el = sectionRef.current;
+      if (!el) return;
+
+      const target = event.target as HTMLElement | null;
+      if (
+        target &&
+        (target.tagName === "INPUT" ||
+          target.tagName === "TEXTAREA" ||
+          target.isContentEditable)
+      ) {
+        return;
+      }
+
+      const rect = el.getBoundingClientRect();
+      const sectionTop = window.scrollY + rect.top;
+      const sectionEnd = sectionTop + el.offsetHeight - window.innerHeight;
+      const currentY = window.scrollY;
+      const insideStickyRange = currentY >= sectionTop && currentY <= sectionEnd;
+      if (!insideStickyRange) return;
+
+      const currentStep = Math.min(
+        scenes.length - 1,
+        Math.max(0, Math.round((currentY - sectionTop) / Math.max(window.innerHeight, 1))),
+      );
+
+      let nextStep: number | null = null;
+      switch (event.key) {
+        case "ArrowDown":
+        case "PageDown":
+        case " ":
+          nextStep = currentStep + 1;
+          break;
+        case "ArrowUp":
+        case "PageUp":
+          nextStep = currentStep - 1;
+          break;
+        case "Home":
+          nextStep = 0;
+          break;
+        case "End":
+          nextStep = scenes.length - 1;
+          break;
+        default:
+          return;
+      }
+
+      if (nextStep === null || nextStep < 0 || nextStep > scenes.length - 1) return;
+      if (nextStep === currentStep) return;
+
+      event.preventDefault();
+      if (snapLockRef.current) return;
+
+      snapLockRef.current = true;
+      window.scrollTo({
+        top: sectionTop + nextStep * window.innerHeight,
+        behavior: "smooth",
+      });
+
+      if (snapTimeoutRef.current !== null) {
+        window.clearTimeout(snapTimeoutRef.current);
+      }
+      snapTimeoutRef.current = window.setTimeout(() => {
+        snapLockRef.current = false;
+        snapTimeoutRef.current = null;
+      }, 700);
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+
     return () => {
       window.removeEventListener("wheel", onWheel);
       window.removeEventListener("touchstart", onTouchStart);
       window.removeEventListener("touchmove", onTouchMove);
       window.removeEventListener("touchend", onTouchEnd);
+      window.removeEventListener("keydown", onKeyDown);
       if (snapTimeoutRef.current !== null) {
         window.clearTimeout(snapTimeoutRef.current);
       }

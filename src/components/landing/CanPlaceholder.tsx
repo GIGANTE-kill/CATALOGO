@@ -1,14 +1,14 @@
-import balyCan from "@/assets/baly-tropical.png";
+import capaCatalogo from "@/assets/capa-catalogo.png";
 
 type Props = { className?: string; variant?: "tradicional" | "tropical" };
 
-/** Baly can image */
+/** Catálogo DSR cover image (replaces can in hero) */
 export function CanPlaceholder({ className }: Props) {
   return (
-    <div className={className} style={{ width: 440, height: 920 }}>
+    <div className={className} style={{ width: 600, height: 800 }}>
       <img
-        src={balyCan}
-        alt="Lata Baly Energy Drink Tropical 473ml"
+        src={capaCatalogo}
+        alt="Catálogo DSR — Distribuidora São Roque"
         className="w-full h-full object-contain drop-shadow-2xl"
         loading="lazy"
       />

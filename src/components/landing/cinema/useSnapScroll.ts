@@ -1,7 +1,7 @@
 import { RefObject, useEffect, useRef, useState } from "react";
 
 type Options = {
-  sectionRef: RefObject<HTMLElement>;
+  sectionRef: RefObject<HTMLElement | null>;
   steps: number;
   lockMs?: number;
 };

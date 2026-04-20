@@ -90,6 +90,8 @@ const scenes: Scene[] = [
 
 export function CinemaScroll() {
   const sectionRef = useRef<HTMLElement>(null);
+  const snapLockRef = useRef(false);
+  const snapTimeoutRef = useRef<number | null>(null);
   const [activeScene, setActiveScene] = useState(0);
   const [progress, setProgress] = useState(0);
 
@@ -105,7 +107,10 @@ export function CinemaScroll() {
         const scrolled = Math.min(Math.max(-rect.top, 0), total);
         const p = total > 0 ? scrolled / total : 0;
         setProgress(p);
-        const idx = Math.min(scenes.length - 1, Math.floor(p * scenes.length * 0.999));
+        const idx = Math.min(
+          scenes.length - 1,
+          Math.max(0, Math.round(scrolled / Math.max(window.innerHeight, 1))),
+        );
         setActiveScene(idx);
       });
     };
@@ -114,6 +119,56 @@ export function CinemaScroll() {
     return () => {
       window.removeEventListener("scroll", onScroll);
       cancelAnimationFrame(rafId);
+    };
+  }, []);
+
+  useEffect(() => {
+    const onWheel = (event: WheelEvent) => {
+      const el = sectionRef.current;
+      if (!el) return;
+
+      const rect = el.getBoundingClientRect();
+      const sectionTop = window.scrollY + rect.top;
+      const sectionEnd = sectionTop + el.offsetHeight - window.innerHeight;
+      const currentY = window.scrollY;
+      const insideStickyRange = currentY >= sectionTop && currentY <= sectionEnd;
+
+      if (!insideStickyRange || event.deltaY === 0) return;
+
+      const currentStep = Math.min(
+        scenes.length - 1,
+        Math.max(0, Math.round((currentY - sectionTop) / Math.max(window.innerHeight, 1))),
+      );
+      const nextStep = event.deltaY > 0 ? currentStep + 1 : currentStep - 1;
+
+      if (nextStep < 0 || nextStep > scenes.length - 1) return;
+
+      event.preventDefault();
+      if (snapLockRef.current) return;
+
+      snapLockRef.current = true;
+      window.scrollTo({
+        top: sectionTop + nextStep * window.innerHeight,
+        behavior: "smooth",
+      });
+
+      if (snapTimeoutRef.current !== null) {
+        window.clearTimeout(snapTimeoutRef.current);
+      }
+
+      snapTimeoutRef.current = window.setTimeout(() => {
+        snapLockRef.current = false;
+        snapTimeoutRef.current = null;
+      }, 700);
+    };
+
+    window.addEventListener("wheel", onWheel, { passive: false });
+
+    return () => {
+      window.removeEventListener("wheel", onWheel);
+      if (snapTimeoutRef.current !== null) {
+        window.clearTimeout(snapTimeoutRef.current);
+      }
     };
   }, []);
 

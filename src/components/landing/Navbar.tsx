@@ -12,12 +12,12 @@ export function Navbar() {
     const compute = () => {
       ticking = false;
       const y = window.scrollY;
-      // Começa a esmaecer após 80px e some completamente em 360px
-      const linear = Math.max(0, Math.min(1, 1 - (y - 80) / 280));
-      // easeOutCubic sobre o progresso de "sumir" deixa o fade mais suave
-      const progress = 1 - linear;
-      const eased = 1 - Math.pow(1 - progress, 3);
-      const fade = 1 - eased;
+      // Distância de fade bem maior para uma transição realmente suave
+      const start = 120;
+      const end = 700;
+      const linear = Math.max(0, Math.min(1, 1 - (y - start) / (end - start)));
+      // easeInOutSine: começa devagar, acelera no meio, termina devagar
+      const fade = 0.5 - Math.cos(linear * Math.PI) / 2;
       // Evita re-renders se a mudança for imperceptível
       if (Math.abs(fade - lastOpacity) > 0.01 || fade === 0 || fade === 1) {
         lastOpacity = fade;
@@ -46,7 +46,7 @@ export function Navbar() {
         background: `rgba(7,17,31,${0.98 * opacity})`,
         opacity,
         pointerEvents: opacity < 0.05 ? "none" : "auto",
-        transition: "opacity 0.2s linear",
+        transition: "opacity 0.4s ease-out, background-color 0.4s ease-out",
       }}
     >
       <div className="flex items-center gap-3.5">

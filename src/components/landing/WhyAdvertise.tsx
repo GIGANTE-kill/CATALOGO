@@ -1,3 +1,5 @@
+import { Reveal, RevealItem } from "./Reveal";
+
 const pillars = [
   {
     number: "01",
@@ -32,23 +34,28 @@ export function WhyAdvertise() {
     <section className="py-24 px-8 bg-bg">
       <div className="max-w-[1400px] mx-auto">
         <div className="grid lg:grid-cols-[1.1fr_1fr] gap-16 mb-16 items-end">
-          <h2 className="reveal font-display text-white text-5xl sm:text-6xl md:text-7xl leading-[0.9]">
-            SUA MARCA<br />
-            GUIANDO O PEDIDO<br />
-            NO <span className="text-brand-red">PONTO DE VENDA</span>
-          </h2>
-          <p className="reveal text-brand-muted text-base md:text-lg leading-relaxed font-light">
-            O Catálogo DSR não é apenas um material de consulta; é a principal ferramenta de
-            campo do nosso time. Ele entra em cada loja, é aberto em cada balcão e direciona a
-            decisão de compra de milhares de varejistas.
-          </p>
+          <Reveal variant="fade-right">
+            <h2 className="font-display text-white text-5xl sm:text-6xl md:text-7xl leading-[0.9]">
+              SUA MARCA<br />
+              GUIANDO O PEDIDO<br />
+              NO <span className="text-brand-red">PONTO DE VENDA</span>
+            </h2>
+          </Reveal>
+          <Reveal variant="fade-left" delay={0.15}>
+            <p className="text-brand-muted text-base md:text-lg leading-relaxed font-light">
+              O Catálogo DSR não é apenas um material de consulta; é a principal ferramenta de
+              campo do nosso time. Ele entra em cada loja, é aberto em cada balcão e direciona a
+              decisão de compra de milhares de varejistas.
+            </p>
+          </Reveal>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-px bg-white/5">
+        <Reveal stagger className="grid md:grid-cols-2 gap-px bg-white/5">
           {pillars.map((p) => (
-            <div
+            <RevealItem
               key={p.number}
-              className="reveal group bg-bg p-8 md:p-10 hover:bg-bg2 transition-colors"
+              variant="fade-up"
+              className="group bg-bg p-8 md:p-10 hover:bg-bg2 transition-colors"
             >
               <div className="flex items-baseline justify-between mb-6">
                 <span className="font-display text-white/20 text-2xl tracking-wider">
@@ -78,17 +85,17 @@ export function WhyAdvertise() {
               <p className="text-brand-muted text-sm md:text-base leading-relaxed font-light">
                 {p.text}
               </p>
-            </div>
+            </RevealItem>
           ))}
-        </div>
+        </Reveal>
 
-        <div className="reveal mt-16 max-w-3xl mx-auto text-center border-l-2 border-brand-red pl-6 md:border-l-0 md:border-t-2 md:pl-0 md:pt-8">
+        <Reveal variant="scale-in" delay={0.1} className="mt-16 max-w-3xl mx-auto text-center border-l-2 border-brand-red pl-6 md:border-l-0 md:border-t-2 md:pl-0 md:pt-8">
           <p className="font-display text-white text-2xl md:text-3xl leading-tight tracking-wide">
             "Diferente de um anúncio de revista que o cliente lê e joga fora, o nosso catálogo é a{" "}
             <span className="text-brand-red">bíblia de vendas</span> do nosso consultor. Estar
             nele é garantir que o nosso time vende a sua marca em cada visita."
           </p>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

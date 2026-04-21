@@ -1,4 +1,5 @@
 import React from "react";
+import { Reveal, RevealItem } from "./Reveal";
 
 type Format = {
   name: string;
@@ -67,22 +68,27 @@ export function Pacotes() {
     <section id="pacotes" className="py-24 px-8 bg-bg">
       <div className="max-w-[1400px] mx-auto">
         <div className="grid lg:grid-cols-[1.1fr_1fr] gap-16 mb-16 items-end">
-          <h2 className="reveal font-display text-white text-5xl sm:text-6xl md:text-7xl leading-[0.9]">
-            ESCOLHA COMO<br />
-            <span className="text-brand-red">APARECER</span>
-          </h2>
-          <p className="reveal text-white/50 text-base md:text-lg leading-relaxed font-light">
-            Três formatos pensados para diferentes estratégias de exposição.
-            Todos com a mesma distribuição: 48K exemplares, 24 meses no campo,
-            na mão de cada vendedor.
-          </p>
+          <Reveal variant="fade-right">
+            <h2 className="font-display text-white text-5xl sm:text-6xl md:text-7xl leading-[0.9]">
+              ESCOLHA COMO<br />
+              <span className="text-brand-red">APARECER</span>
+            </h2>
+          </Reveal>
+          <Reveal variant="fade-left" delay={0.15}>
+            <p className="text-white/50 text-base md:text-lg leading-relaxed font-light">
+              Três formatos pensados para diferentes estratégias de exposição.
+              Todos com a mesma distribuição: 48K exemplares, 24 meses no campo,
+              na mão de cada vendedor.
+            </p>
+          </Reveal>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-px bg-white/5">
+        <Reveal stagger staggerDelay={0.18} className="grid md:grid-cols-3 gap-px bg-white/5">
           {formats.map((f) => (
-            <div
+            <RevealItem
               key={f.name}
-              className={`reveal relative bg-bg p-10 md:p-12 transition-colors hover:bg-bg2 ${
+              variant="zoom-in"
+              className={`relative bg-bg p-10 md:p-12 transition-colors hover:bg-bg2 ${
                 f.highlight ? "md:bg-bg2" : ""
               }`}
             >
@@ -138,18 +144,18 @@ export function Pacotes() {
                   </span>
                 </div>
               </div>
-            </div>
+            </RevealItem>
           ))}
-        </div>
+        </Reveal>
 
-        <div className="reveal mt-12 text-center">
+        <Reveal variant="fade-up" delay={0.2} className="mt-12 text-center">
           <a
             href="#cta"
             className="inline-block bg-brand-red text-white px-10 py-4 font-display tracking-widest text-sm hover:-translate-y-0.5 transition-transform"
           >
             FECHAR PARCERIA →
           </a>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

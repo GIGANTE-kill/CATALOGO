@@ -1,4 +1,5 @@
 import { useCountUp } from "./useCountUp";
+import { Reveal, RevealItem } from "./Reveal";
 
 type Stat = {
   value: number;
@@ -72,12 +73,18 @@ export function Stats() {
   return (
     <section id="numeros" className="py-24 px-8 bg-bg2">
       <div className="max-w-[1400px] mx-auto">
-        <h2 className="reveal font-display text-white text-5xl sm:text-6xl md:text-7xl mb-12 leading-[0.9]">
-          NOSSOS NÚMEROS,<br /><span className="text-brand-red">SEU RESULTADO</span>
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-white/5">
-          {stats.map((s) => <StatCard key={s.label} stat={s} />)}
-        </div>
+        <Reveal variant="fade-up">
+          <h2 className="font-display text-white text-5xl sm:text-6xl md:text-7xl mb-12 leading-[0.9]">
+            NOSSOS NÚMEROS,<br /><span className="text-brand-red">SEU RESULTADO</span>
+          </h2>
+        </Reveal>
+        <Reveal stagger staggerDelay={0.15} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-white/5">
+          {stats.map((s) => (
+            <RevealItem key={s.label} variant="zoom-in">
+              <StatCard stat={s} />
+            </RevealItem>
+          ))}
+        </Reveal>
       </div>
     </section>
   );

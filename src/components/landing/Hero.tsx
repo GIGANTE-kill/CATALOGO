@@ -94,7 +94,7 @@ export function Hero() {
             A Distribuidora São Roque conecta seus produtos a milhares de pontos de venda estratégicos. Garanta visibilidade máxima e destaque sua marca exatamente onde o varejista toma a decisão de abastecimento.
           </p>
 
-          <div className="reveal flex flex-wrap gap-4" style={{ transitionDelay: "0.3s" }}>
+          <div className="reveal hidden md:flex flex-wrap gap-4" style={{ transitionDelay: "0.3s" }}>
             <a
               href="#pacotes"
               className="bg-brand-red text-white px-7 py-4 rounded font-bold tracking-wider text-sm hover:-translate-y-0.5 transition-transform"

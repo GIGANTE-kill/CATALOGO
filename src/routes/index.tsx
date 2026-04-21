@@ -1,15 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Navbar } from "@/components/landing/Navbar";
-import { Hero } from "@/components/landing/Hero";
-import { CinemaScroll } from "@/components/landing/CinemaScroll";
-import { Ticker } from "@/components/landing/Ticker";
-import { Stats } from "@/components/landing/Stats";
-import { WhyAdvertise } from "@/components/landing/WhyAdvertise";
-import { Pacotes } from "@/components/landing/Pacotes";
-import { Quote } from "@/components/landing/Quote";
-import { CTAFinal } from "@/components/landing/CTAFinal";
-import { Footer } from "@/components/landing/Footer";
-import { useReveal } from "@/components/landing/useReveal";
+import { FornecedorPage } from "@/components/landing/FornecedorPage";
+import { defaultFornecedor } from "@/data/fornecedores";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -28,25 +19,5 @@ export const Route = createFileRoute("/")({
       },
     ],
   }),
-  component: Index,
+  component: () => <FornecedorPage data={defaultFornecedor} />,
 });
-
-function Index() {
-  useReveal();
-  return (
-    <div className="min-h-screen bg-bg text-white font-body">
-      <Navbar />
-      <main>
-        <Hero />
-        <WhyAdvertise />
-        <CinemaScroll />
-        <Ticker />
-        <Stats />
-        <Pacotes />
-        <Quote />
-        <CTAFinal />
-      </main>
-      <Footer />
-    </div>
-  );
-}

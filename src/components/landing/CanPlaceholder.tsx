@@ -10,7 +10,9 @@ export function CanPlaceholder({ className }: Props) {
         src={capaCatalogo}
         alt="Catálogo DSR — Distribuidora São Roque"
         className="w-full h-full object-contain drop-shadow-2xl"
-        loading="lazy"
+        loading="eager"
+        decoding="async"
+        fetchPriority="high"
       />
     </div>
   );

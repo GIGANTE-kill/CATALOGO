@@ -5,7 +5,7 @@ type Props = { className?: string; variant?: "tradicional" | "tropical" };
 /** Catálogo DSR cover image (replaces can in hero) */
 export function CanPlaceholder({ className }: Props) {
   return (
-    <div className={className} style={{ width: 600, height: 800 }}>
+    <div className={`${className ?? ""} w-full max-w-[600px] aspect-[3/4] mx-auto`}>
       <img
         src={capaCatalogo}
         alt="Catálogo DSR — Distribuidora São Roque"

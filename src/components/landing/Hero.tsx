@@ -1,8 +1,23 @@
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { CanPlaceholder } from "./CanPlaceholder";
 
 export function Hero() {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  const filter = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["blur(0px)", "blur(10px)"]
+  );
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.3]);
+
   return (
-    <section
+    <motion.section
+      ref={ref}
       id="hero"
       className="min-h-screen flex items-center justify-center relative overflow-hidden px-8 pt-[100px] pb-[60px]"
     >
@@ -41,7 +56,7 @@ export function Hero() {
         }}
       />
 
-      <div className="relative z-10 max-w-[1400px] w-full mx-auto grid md:grid-cols-2 gap-12 items-center">
+      <motion.div style={{ filter, opacity }} className="relative z-10 max-w-[1400px] w-full mx-auto grid md:grid-cols-2 gap-12 items-center">
         {/* LEFT */}
         <div className="space-y-7">
           <div className="reveal inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/15 bg-white/5 text-white/80 text-xs font-bold tracking-widest font-condensed uppercase">
@@ -92,7 +107,7 @@ export function Hero() {
           />
           <CanPlaceholder className="animate-can relative z-10" />
         </div>
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 }

@@ -80,7 +80,7 @@ export function Stats() {
         </Reveal>
         <Reveal stagger staggerDelay={0.15} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-white/5">
           {stats.map((s) => (
-            <RevealItem key={s.label} variant="zoom-in">
+            <RevealItem key={s.label} variant="zoom-in" className="h-full">
               <StatCard stat={s} />
             </RevealItem>
           ))}

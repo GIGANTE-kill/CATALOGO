@@ -79,16 +79,49 @@ function InlineFormatCard({ format }: { format: Format }) {
     const el = ref.current;
     if (!el || typeof window === "undefined") return;
 
-    const isTouch = window.matchMedia("(hover: none)").matches;
+    const isTouch =
+      window.matchMedia("(hover: none)").matches ||
+      window.matchMedia("(max-width: 768px)").matches;
     if (!isTouch) return;
 
-    const obs = new IntersectionObserver(
-      ([entry]) => setActive(entry.isIntersecting && entry.intersectionRatio > 0.55),
-      { threshold: [0, 0.55, 0.75, 1] }
-    );
+    // Fallback computation: card is "active" when its center is in the
+    // middle 60% of the viewport. Runs on scroll/resize and is also used
+    // as the source of truth when IntersectionObserver isn't available
+    // or fails to fire (some mobile browsers / iframes).
+    const evaluate = () => {
+      const card = el.parentElement; // the RevealItem card itself
+      if (!card) return;
+      const rect = card.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      const center = rect.top + rect.height / 2;
+      const inBand = center > vh * 0.2 && center < vh * 0.8;
+      setActive((prev) => (prev === inBand ? prev : inBand));
+    };
 
-    obs.observe(el);
-    return () => obs.disconnect();
+    let obs: IntersectionObserver | null = null;
+    if (typeof IntersectionObserver !== "undefined") {
+      obs = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.intersectionRatio >= 0.55) setActive(true);
+          else if (entry.intersectionRatio < 0.2) setActive(false);
+          else evaluate();
+        },
+        { threshold: [0, 0.2, 0.55, 0.75, 1] }
+      );
+      obs.observe(el);
+    }
+
+    evaluate();
+    window.addEventListener("scroll", evaluate, { passive: true });
+    window.addEventListener("resize", evaluate);
+    window.addEventListener("touchmove", evaluate, { passive: true });
+
+    return () => {
+      obs?.disconnect();
+      window.removeEventListener("scroll", evaluate);
+      window.removeEventListener("resize", evaluate);
+      window.removeEventListener("touchmove", evaluate);
+    };
   }, []);
 
   return (

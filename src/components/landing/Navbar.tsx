@@ -61,10 +61,10 @@ export function Navbar() {
         }}
       >
         <div className="flex items-center gap-3.5">
-          <img src={logoDsr} alt="Distribuidora São Roque" className="h-16 md:h-20 object-contain" />
+          <img src={logoDsr} alt="Distribuidora São Roque" className="h-36 md:h-40 object-contain" />
         </div>
         <div className="flex items-center gap-3.5">
-          <img src={logoBaly} alt="Baly" className="h-16 md:h-20 object-contain" />
+          <img src={logoBaly} alt="Baly" className="h-11 md:h-14 object-contain" />
         </div>
       </nav>
     </div>

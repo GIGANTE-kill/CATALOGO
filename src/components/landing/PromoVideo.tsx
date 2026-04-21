@@ -10,37 +10,33 @@ type Props = {
 
 /**
  * Vertical 1080x1350 (4:5) promo video.
- * - Autoplays muted when scrolled into view (browser policy)
- * - User can tap the speaker icon to unmute
- * - Pauses when out of view
- * - Resumes from last position on revisit (sessionStorage)
+ * - Tenta autoplay COM SOM na 1ª reprodução; se o browser bloquear, fica mudo
+ *   com um badge pulsante "Toque para ouvir" para sinalizar que é vídeo.
+ * - A partir do 2º loop, muta automaticamente (usuário pode reativar a qualquer momento).
+ * - Pausa quando sai da viewport e retoma posição entre visitas (sessionStorage).
  */
 export function PromoVideo({ className = "", storageKey = "promo-video-time" }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [muted, setMuted] = useState(true);
+  const loopCountRef = useRef(0);
+  const [muted, setMuted] = useState(false); // tenta com som primeiro
+  const [needsTapToHear, setNeedsTapToHear] = useState(false);
   const [shouldLoad, setShouldLoad] = useState(false);
 
-  // Defer mounting the video source until the container is near the viewport,
-  // so the catalog hero image wins the bandwidth race on first paint.
+  // Adia o mount do <video> até estar próximo da viewport
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
-
-    const trigger = () => setShouldLoad(true);
-
-    // Wait until browser is idle AND element is near viewport
     const io = new IntersectionObserver(
       (entries) => {
         if (entries.some((e) => e.isIntersecting)) {
-          trigger();
+          setShouldLoad(true);
           io.disconnect();
         }
       },
       { rootMargin: "200px" }
     );
     io.observe(el);
-
     return () => io.disconnect();
   }, []);
 
@@ -52,25 +48,52 @@ export function PromoVideo({ className = "", storageKey = "promo-video-time" }: 
     const saved = sessionStorage.getItem(storageKey);
     if (saved) {
       const t = parseFloat(saved);
-      if (!Number.isNaN(t) && t > 0) {
-        video.currentTime = t;
-      }
+      if (!Number.isNaN(t) && t > 0) video.currentTime = t;
     }
 
     const handleTimeUpdate = () => {
       sessionStorage.setItem(storageKey, String(video.currentTime));
     };
-    const handleEnded = () => {
-      sessionStorage.removeItem(storageKey);
+    // No loop (sem 'ended'), detectamos volta ao início via seeked + currentTime baixo
+    const handleSeeked = () => {
+      if (video.currentTime < 0.5 && !video.paused) {
+        loopCountRef.current += 1;
+        if (loopCountRef.current >= 1) {
+          // 2º play em diante: muta
+          video.muted = true;
+          setMuted(true);
+          setNeedsTapToHear(false);
+        }
+      }
     };
     video.addEventListener("timeupdate", handleTimeUpdate);
-    video.addEventListener("ended", handleEnded);
+    video.addEventListener("seeked", handleSeeked);
+
+    const tryPlay = async () => {
+      // Tenta primeiro COM som
+      try {
+        video.muted = false;
+        await video.play();
+        setMuted(false);
+        setNeedsTapToHear(false);
+      } catch {
+        // Browser bloqueou autoplay com áudio → cai pra muted
+        try {
+          video.muted = true;
+          setMuted(true);
+          setNeedsTapToHear(true);
+          await video.play();
+        } catch {
+          /* noop */
+        }
+      }
+    };
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
-            video.play().catch(() => {});
+            tryPlay();
           } else {
             video.pause();
           }
@@ -83,7 +106,7 @@ export function PromoVideo({ className = "", storageKey = "promo-video-time" }: 
     return () => {
       observer.disconnect();
       video.removeEventListener("timeupdate", handleTimeUpdate);
-      video.removeEventListener("ended", handleEnded);
+      video.removeEventListener("seeked", handleSeeked);
     };
   }, [storageKey, shouldLoad]);
 
@@ -93,6 +116,7 @@ export function PromoVideo({ className = "", storageKey = "promo-video-time" }: 
     const next = !muted;
     video.muted = next;
     setMuted(next);
+    setNeedsTapToHear(false);
     if (!next) {
       video.play().catch(() => {});
     }
@@ -118,9 +142,25 @@ export function PromoVideo({ className = "", storageKey = "promo-video-time" }: 
           playsInline
           loop
           preload="metadata"
-          className="absolute inset-0 w-full h-full object-cover"
+          onClick={() => {
+            if (muted) toggleMute();
+          }}
+          className="absolute inset-0 w-full h-full object-cover cursor-pointer"
         />
       )}
+
+      {/* Badge "Toque para ouvir" quando autoplay com som foi bloqueado */}
+      {needsTapToHear && muted && (
+        <button
+          type="button"
+          onClick={toggleMute}
+          className="absolute top-3 left-3 z-10 flex items-center gap-2 px-3 py-2 rounded-full bg-brand-red text-white text-xs font-bold tracking-wider uppercase shadow-lg animate-pulse"
+        >
+          <Volume2 className="w-4 h-4" />
+          Toque para ouvir
+        </button>
+      )}
+
       <button
         type="button"
         onClick={toggleMute}

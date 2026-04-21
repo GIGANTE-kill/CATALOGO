@@ -131,7 +131,7 @@ export function Pacotes() {
               <img
                 src={f.image}
                 alt={f.name}
-                className="pointer-events-none absolute left-1/2 -top-8 w-[85%] max-w-[320px] -translate-x-1/2 opacity-0 scale-75 translate-y-6 transition-all duration-500 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:-translate-y-[55%] group-hover:rotate-[-4deg] z-20 drop-shadow-[0_25px_45px_rgba(0,0,0,0.6)]"
+                className="pointer-events-none absolute left-1/2 -top-8 w-[106%] max-w-[400px] -translate-x-1/2 opacity-0 scale-75 translate-y-6 transition-all duration-500 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:-translate-y-[55%] group-hover:rotate-[-4deg] z-20 drop-shadow-[0_25px_45px_rgba(0,0,0,0.6)]"
               />
 
               {f.highlight && (

@@ -17,9 +17,35 @@ type Props = {
  */
 export function PromoVideo({ className = "", storageKey = "promo-video-time" }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [muted, setMuted] = useState(true);
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  // Defer mounting the video source until the container is near the viewport,
+  // so the catalog hero image wins the bandwidth race on first paint.
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const trigger = () => setShouldLoad(true);
+
+    // Wait until browser is idle AND element is near viewport
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          trigger();
+          io.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+    io.observe(el);
+
+    return () => io.disconnect();
+  }, []);
 
   useEffect(() => {
+    if (!shouldLoad) return;
     const video = videoRef.current;
     if (!video) return;
 
@@ -59,7 +85,7 @@ export function PromoVideo({ className = "", storageKey = "promo-video-time" }: 
       video.removeEventListener("timeupdate", handleTimeUpdate);
       video.removeEventListener("ended", handleEnded);
     };
-  }, [storageKey]);
+  }, [storageKey, shouldLoad]);
 
   const toggleMute = () => {
     const video = videoRef.current;
@@ -68,26 +94,33 @@ export function PromoVideo({ className = "", storageKey = "promo-video-time" }: 
     video.muted = next;
     setMuted(next);
     if (!next) {
-      // User intent: ensure it's playing when unmuted
       video.play().catch(() => {});
     }
   };
 
   return (
     <div
+      ref={containerRef}
       className={`relative overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-black ${className}`}
-      style={{ aspectRatio: "1080 / 1350" }}
+      style={{
+        aspectRatio: "1080 / 1350",
+        backgroundImage: `url(${promoPosterUrl})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
     >
-      <video
-        ref={videoRef}
-        src={promoVideoUrl}
-        poster={promoPosterUrl}
-        muted={muted}
-        playsInline
-        loop
-        preload="auto"
-        className="absolute inset-0 w-full h-full object-cover"
-      />
+      {shouldLoad && (
+        <video
+          ref={videoRef}
+          src={promoVideoUrl}
+          poster={promoPosterUrl}
+          muted={muted}
+          playsInline
+          loop
+          preload="metadata"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      )}
       <button
         type="button"
         onClick={toggleMute}

@@ -84,7 +84,7 @@ export function Hero() {
             ★ Proposta exclusiva
           </div>
 
-          <h1 className="reveal order-2 md:order-none font-display text-white leading-[0.85] text-5xl sm:text-7xl md:text-8xl lg:text-9xl" style={{ transitionDelay: "0.1s" }}>
+          <h1 className="reveal order-2 md:order-none font-display text-white leading-[0.85] text-7xl sm:text-8xl md:text-8xl lg:text-9xl" style={{ transitionDelay: "0.1s" }}>
             SUA MARCA<br />
             NO <span className="text-brand-red">CATÁLOGO</span><br />
             QUE VENDE

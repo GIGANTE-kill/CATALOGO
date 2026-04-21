@@ -31,7 +31,7 @@ export function SceneStage({ scenes, activeScene }: Props) {
       </div>
 
       {/* AD FORMAT IMAGES */}
-      <div className="flex justify-center md:justify-center items-end md:items-center relative h-[42vh] sm:h-[55vh] md:h-[110vh] order-1 md:order-2 pt-4 md:pt-0 -mb-6 md:mb-0">
+      <div className="flex justify-center md:justify-center items-center md:items-center relative h-[28vh] sm:h-[40vh] md:h-[110vh] order-1 md:order-2 pt-0 md:pt-0 -mb-2 md:mb-0">
         <div
           className="absolute bottom-2 md:bottom-10 left-1/2 -translate-x-1/2 w-[280px] md:w-[500px] h-[70px] md:h-[140px] rounded-full transition-all duration-700 opacity-70 md:opacity-100 z-0"
           style={{ background: current.glow, filter: "blur(55px)" }}

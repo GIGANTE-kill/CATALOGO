@@ -71,65 +71,6 @@ const formats: Format[] = [
   },
 ];
 
-export function Pacotes() {
-  return (
-    <section id="pacotes" className="relative py-24 px-8 bg-bg overflow-hidden">
-      {/* Video background */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-        style={{ opacity: 0.35 }}
-      >
-        <source src={pacotesBg} type="video/webm" />
-      </video>
-      {/* Lighter overlay so video shows through */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse at center, rgba(10,15,30,0.25) 0%, rgba(10,15,30,0.65) 100%)",
-        }}
-      />
-
-      <div className="relative z-10 max-w-[1400px] mx-auto">
-        <div className="grid lg:grid-cols-[1.1fr_1fr] gap-16 mb-16 items-end">
-          <Reveal variant="fade-right">
-            <h2 className="font-display text-white text-5xl sm:text-6xl md:text-7xl leading-[0.9]">
-              ESCOLHA COMO<br />
-              <span className="text-brand-red">APARECER</span>
-            </h2>
-          </Reveal>
-          <Reveal variant="fade-left" delay={0.15}>
-            <p className="text-white/70 text-base md:text-lg leading-relaxed font-light">
-              Três formatos pensados para diferentes estratégias de exposição.
-              Todos com a mesma distribuição: 48K exemplares, 24 meses no campo,
-              na mão de cada vendedor.
-            </p>
-          </Reveal>
-        </div>
-
-        <Reveal stagger staggerDelay={0.18} className="grid md:grid-cols-3 gap-6">
-          {formats.map((f) => (
-            <FormatCard key={f.name} format={f} />
-          ))}
-        </Reveal>
-
-        <Reveal variant="fade-up" delay={0.2} className="mt-12 text-center">
-          <a
-            href="#cta"
-            className="inline-block bg-brand-red text-white px-10 py-4 font-display tracking-widest text-sm hover:-translate-y-0.5 transition-transform"
-          >
-            FECHAR PARCERIA →
-          </a>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
 function FormatCard({ format: f }: { format: Format }) {
   const ref = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(false);
@@ -137,7 +78,6 @@ function FormatCard({ format: f }: { format: Format }) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    // Only auto-activate on touch/mobile devices
     const isTouch = window.matchMedia("(hover: none)").matches;
     if (!isTouch) return;
 
@@ -165,7 +105,6 @@ function FormatCard({ format: f }: { format: Format }) {
     >
       <div ref={ref} aria-hidden className="absolute inset-0 pointer-events-none" />
 
-      {/* Floating PNG: hover on desktop, scroll-into-view on mobile */}
       <img
         src={f.image}
         alt={f.name}
@@ -225,5 +164,64 @@ function FormatCard({ format: f }: { format: Format }) {
         </div>
       </div>
     </RevealItem>
+  );
+}
+
+export function Pacotes() {
+  return (
+    <section id="pacotes" className="relative py-24 px-8 bg-bg overflow-hidden">
+      {/* Video background */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+        style={{ opacity: 0.35 }}
+      >
+        <source src={pacotesBg} type="video/webm" />
+      </video>
+      {/* Lighter overlay so video shows through */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, rgba(10,15,30,0.25) 0%, rgba(10,15,30,0.65) 100%)",
+        }}
+      />
+
+      <div className="relative z-10 max-w-[1400px] mx-auto">
+        <div className="grid lg:grid-cols-[1.1fr_1fr] gap-16 mb-16 items-end">
+          <Reveal variant="fade-right">
+            <h2 className="font-display text-white text-5xl sm:text-6xl md:text-7xl leading-[0.9]">
+              ESCOLHA COMO<br />
+              <span className="text-brand-red">APARECER</span>
+            </h2>
+          </Reveal>
+          <Reveal variant="fade-left" delay={0.15}>
+            <p className="text-white/70 text-base md:text-lg leading-relaxed font-light">
+              Três formatos pensados para diferentes estratégias de exposição.
+              Todos com a mesma distribuição: 48K exemplares, 24 meses no campo,
+              na mão de cada vendedor.
+            </p>
+          </Reveal>
+        </div>
+
+        <Reveal stagger staggerDelay={0.18} className="grid md:grid-cols-3 gap-6">
+          {formats.map((f) => (
+            <FormatCard key={f.name} format={f} />
+          ))}
+        </Reveal>
+
+        <Reveal variant="fade-up" delay={0.2} className="mt-12 text-center">
+          <a
+            href="#cta"
+            className="inline-block bg-brand-red text-white px-10 py-4 font-display tracking-widest text-sm hover:-translate-y-0.5 transition-transform"
+          >
+            FECHAR PARCERIA →
+          </a>
+        </Reveal>
+      </div>
+    </section>
   );
 }

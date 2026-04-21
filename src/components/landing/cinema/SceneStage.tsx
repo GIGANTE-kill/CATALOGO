@@ -13,7 +13,7 @@ export function SceneStage({ scenes, activeScene }: Props) {
       {/* TEXT */}
       <div
         key={activeScene}
-        className="relative z-20 space-y-3 md:space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-700 order-2 md:order-1 text-center md:text-left -mt-8 md:mt-0"
+        className="relative z-20 space-y-3 md:space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-700 order-2 md:order-1 text-center md:text-left mt-6 md:mt-0"
       >
         <div
           className="font-condensed font-bold tracking-[0.25em] md:tracking-[0.3em] text-[10px] sm:text-xs md:text-sm uppercase"
@@ -31,15 +31,15 @@ export function SceneStage({ scenes, activeScene }: Props) {
       </div>
 
       {/* AD FORMAT IMAGES */}
-      <div className="flex justify-center items-center relative h-[45vh] sm:h-[60vh] md:h-[110vh] order-1 md:order-2">
+      <div className="flex justify-start md:justify-center items-start md:items-center relative h-[42vh] sm:h-[55vh] md:h-[110vh] order-1 md:order-2 pt-4 md:pt-0">
         <div
-          className="absolute bottom-0 md:bottom-10 left-1/2 -translate-x-1/2 w-[260px] md:w-[500px] h-[60px] md:h-[140px] rounded-full transition-all duration-700 opacity-60 md:opacity-100"
-          style={{ background: current.glow, filter: "blur(50px)" }}
+          className="absolute bottom-0 md:bottom-10 left-1/2 -translate-x-1/2 w-[280px] md:w-[500px] h-[70px] md:h-[140px] rounded-full transition-all duration-700 opacity-70 md:opacity-100 z-0"
+          style={{ background: current.glow, filter: "blur(55px)" }}
         />
         {scenes.map((s, i) => (
           <div
             key={i}
-            className="absolute inset-0 flex justify-center items-center transition-all duration-700 ease-out"
+            className="absolute inset-0 flex justify-center items-start md:items-center transition-all duration-700 ease-out z-10 pt-2 md:pt-0"
             style={{
               opacity: i === activeScene ? 1 : 0,
               transform: `rotate(${i === activeScene ? s.rotate : 0}deg) scale(${i === activeScene ? s.scale : 0.92})`,
@@ -49,7 +49,7 @@ export function SceneStage({ scenes, activeScene }: Props) {
             <img
               src={s.image}
               alt={s.imageAlt}
-              className="max-h-[45vh] sm:max-h-[60vh] md:max-h-[110vh] w-auto object-contain drop-shadow-2xl"
+              className="max-h-[38vh] sm:max-h-[52vh] md:max-h-[110vh] w-auto object-contain drop-shadow-2xl"
               loading="eager"
               decoding="async"
               fetchPriority={i === 0 ? "high" : "auto"}

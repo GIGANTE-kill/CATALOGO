@@ -78,12 +78,12 @@ export function Pacotes() {
       >
         <source src={pacotesBg} type="video/webm" />
       </video>
-      {/* Dark overlay for legibility */}
+      {/* Lighter overlay so video shows through */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse at center, rgba(10,15,30,0.55) 0%, rgba(10,15,30,0.9) 100%)",
+            "radial-gradient(ellipse at center, rgba(10,15,30,0.25) 0%, rgba(10,15,30,0.65) 100%)",
         }}
       />
 
@@ -96,7 +96,7 @@ export function Pacotes() {
             </h2>
           </Reveal>
           <Reveal variant="fade-left" delay={0.15}>
-            <p className="text-white/50 text-base md:text-lg leading-relaxed font-light">
+            <p className="text-white/70 text-base md:text-lg leading-relaxed font-light">
               Três formatos pensados para diferentes estratégias de exposição.
               Todos com a mesma distribuição: 48K exemplares, 24 meses no campo,
               na mão de cada vendedor.
@@ -104,14 +104,21 @@ export function Pacotes() {
           </Reveal>
         </div>
 
-        <Reveal stagger staggerDelay={0.18} className="grid md:grid-cols-3 gap-px bg-white/5">
+        <Reveal stagger staggerDelay={0.18} className="grid md:grid-cols-3 gap-6">
           {formats.map((f) => (
             <RevealItem
               key={f.name}
               variant="zoom-in"
-              className={`relative bg-bg p-10 md:p-12 transition-colors hover:bg-bg2 ${
-                f.highlight ? "md:bg-bg2" : ""
+              className={`relative rounded-2xl p-10 md:p-12 backdrop-blur-xl border transition-all duration-300 hover:-translate-y-1 ${
+                f.highlight
+                  ? "bg-white/[0.08] border-brand-red/40 shadow-[0_8px_32px_rgba(224,30,43,0.2)]"
+                  : "bg-white/[0.04] border-white/10 hover:bg-white/[0.07] hover:border-white/20"
               }`}
+              style={{
+                boxShadow: f.highlight
+                  ? "0px -16px 24px 0px rgba(224,30,43,0.15) inset, 0 8px 32px rgba(0,0,0,0.3)"
+                  : "0px -16px 24px 0px rgba(255,255,255,0.05) inset, 0 8px 32px rgba(0,0,0,0.2)",
+              }}
             >
               {f.highlight && (
                 <div className="absolute top-6 right-6 font-display text-brand-red text-xs tracking-[0.3em]">

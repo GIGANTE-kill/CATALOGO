@@ -11,7 +11,7 @@ export function FornecedorPage({ data }: Props) {
   useReveal();
   return (
     <div className="min-h-screen bg-bg text-white font-body">
-      <Navbar />
+      <Navbar fornecedorLogo={data.logo} fornecedorNome={data.nome} />
       <main>
         <Hero capaImage={data.capa} />
         <Pacotes

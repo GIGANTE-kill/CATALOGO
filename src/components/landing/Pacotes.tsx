@@ -71,13 +71,14 @@ const formats: Format[] = [
   },
 ];
 
-function FormatCard({ format: f }: { format: Format }) {
+function InlineFormatCard({ format }: { format: Format }) {
   const ref = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    if (!el || typeof window === "undefined") return;
+
     const isTouch = window.matchMedia("(hover: none)").matches;
     if (!isTouch) return;
 
@@ -85,6 +86,7 @@ function FormatCard({ format: f }: { format: Format }) {
       ([entry]) => setActive(entry.isIntersecting && entry.intersectionRatio > 0.55),
       { threshold: [0, 0.55, 0.75, 1] }
     );
+
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
@@ -93,12 +95,12 @@ function FormatCard({ format: f }: { format: Format }) {
     <RevealItem
       variant="zoom-in"
       className={`group relative rounded-2xl p-10 md:p-12 backdrop-blur-xl border transition-all duration-300 hover:-translate-y-1 ${
-        f.highlight
+        format.highlight
           ? "bg-white/[0.08] border-brand-red/40 shadow-[0_8px_32px_rgba(224,30,43,0.2)]"
           : "bg-white/[0.04] border-white/10 hover:bg-white/[0.07] hover:border-white/20"
       } ${active ? "is-active" : ""}`}
       style={{
-        boxShadow: f.highlight
+        boxShadow: format.highlight
           ? "0px -16px 24px 0px rgba(224,30,43,0.15) inset, 0 8px 32px rgba(0,0,0,0.3)"
           : "0px -16px 24px 0px rgba(255,255,255,0.05) inset, 0 8px 32px rgba(0,0,0,0.2)",
       }}
@@ -106,31 +108,31 @@ function FormatCard({ format: f }: { format: Format }) {
       <div ref={ref} aria-hidden className="absolute inset-0 pointer-events-none" />
 
       <img
-        src={f.image}
-        alt={f.name}
+        src={format.image}
+        alt={format.name}
         className="pointer-events-none absolute left-1/2 -top-8 w-[106%] max-w-[400px] -translate-x-1/2 opacity-0 scale-75 translate-y-6 transition-all duration-500 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:-translate-y-[55%] group-hover:rotate-[-4deg] [.is-active_&]:opacity-100 [.is-active_&]:scale-100 [.is-active_&]:-translate-y-[55%] [.is-active_&]:rotate-[-4deg] z-20 drop-shadow-[0_25px_45px_rgba(0,0,0,0.6)]"
       />
 
-      {f.highlight && (
+      {format.highlight && (
         <div className="absolute top-6 right-6 font-display text-brand-red text-xs tracking-[0.3em] z-10">
           RECOMENDADO
         </div>
       )}
 
-      <div className={f.highlight ? "text-brand-red" : "text-white/40"}>
-        <f.Icon />
+      <div className={format.highlight ? "text-brand-red" : "text-white/40"}>
+        <format.Icon />
       </div>
 
       <div className="mt-8 font-display text-white/40 text-xs tracking-[0.3em]">
-        {f.short}
+        {format.short}
       </div>
 
       <h3 className="mt-2 font-display text-white text-3xl md:text-4xl tracking-wide">
-        {f.name}
+        {format.name}
       </h3>
 
       <p className="mt-6 text-white/60 text-sm md:text-base leading-relaxed font-light">
-        {f.description}
+        {format.description}
       </p>
 
       <div className="mt-10 pt-6 border-t border-white/10 space-y-4">
@@ -138,21 +140,15 @@ function FormatCard({ format: f }: { format: Format }) {
           <span className="font-display text-white/40 text-xs tracking-[0.25em]">
             INVESTIMENTO
           </span>
-          <span
-            className={`font-display text-3xl ${
-              f.highlight ? "text-brand-red" : "text-white"
-            }`}
-          >
-            {f.price}
+          <span className={`font-display text-3xl ${format.highlight ? "text-brand-red" : "text-white"}`}>
+            {format.price}
           </span>
         </div>
         <div className="flex items-baseline justify-between">
           <span className="font-display text-white/40 text-xs tracking-[0.25em]">
             EQUIVALE A
           </span>
-          <span className="font-display text-base text-white/70">
-            {f.monthly}
-          </span>
+          <span className="font-display text-base text-white/70">{format.monthly}</span>
         </div>
         <div className="flex items-baseline justify-between pt-2 border-t border-white/5">
           <span className="font-display text-white/40 text-xs tracking-[0.25em]">
@@ -170,7 +166,6 @@ function FormatCard({ format: f }: { format: Format }) {
 export function Pacotes() {
   return (
     <section id="pacotes" className="relative py-24 px-8 bg-bg overflow-hidden">
-      {/* Video background */}
       <video
         autoPlay
         loop
@@ -181,7 +176,7 @@ export function Pacotes() {
       >
         <source src={pacotesBg} type="video/webm" />
       </video>
-      {/* Lighter overlay so video shows through */}
+
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -200,16 +195,15 @@ export function Pacotes() {
           </Reveal>
           <Reveal variant="fade-left" delay={0.15}>
             <p className="text-white/70 text-base md:text-lg leading-relaxed font-light">
-              Três formatos pensados para diferentes estratégias de exposição.
-              Todos com a mesma distribuição: 48K exemplares, 24 meses no campo,
+              Três formatos pensados para diferentes estratégias de exposição. Todos com a mesma distribuição: 48K exemplares, 24 meses no campo,
               na mão de cada vendedor.
             </p>
           </Reveal>
         </div>
 
         <Reveal stagger staggerDelay={0.18} className="grid md:grid-cols-3 gap-6">
-          {formats.map((f) => (
-            <FormatCard key={f.name} format={f} />
+          {formats.map((format) => (
+            <InlineFormatCard key={format.name} format={format} />
           ))}
         </Reveal>
 

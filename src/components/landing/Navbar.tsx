@@ -64,7 +64,7 @@ export function Navbar() {
           <img src={logoDsr} alt="Distribuidora São Roque" className="h-28 md:h-32 object-contain" />
         </div>
         <div className="flex items-center gap-3.5">
-          <img src={logoBaly} alt="Baly" className="h-16 md:h-20 object-contain" />
+          <img src={logoBaly} alt="Baly" className="h-11 md:h-14 object-contain" />
         </div>
       </nav>
     </div>

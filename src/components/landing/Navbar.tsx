@@ -46,7 +46,7 @@ export function Navbar() {
         background: `rgba(7,17,31,${0.98 * opacity})`,
         opacity,
         pointerEvents: opacity < 0.05 ? "none" : "auto",
-        transition: "opacity 0.2s linear",
+        transition: "opacity 0.4s ease-out, background-color 0.4s ease-out",
       }}
     >
       <div className="flex items-center gap-3.5">

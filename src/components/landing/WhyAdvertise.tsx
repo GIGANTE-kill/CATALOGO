@@ -16,7 +16,7 @@ export function WhyAdvertise() {
           {features.map((f) => (
             <div
               key={f.title}
-              className="reveal group flex gap-4 p-5 bg-bg2 border-l-4 border-brand-blue hover:border-brand-gold hover:translate-x-1 transition-all"
+              className="reveal group flex gap-4 p-5 bg-bg2 border-l-4 border-brand-blue hover:border-white hover:translate-x-1 transition-all"
             >
               <div className="text-3xl">{f.icon}</div>
               <div>

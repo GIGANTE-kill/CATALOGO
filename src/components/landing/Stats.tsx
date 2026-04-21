@@ -4,9 +4,9 @@ type Stat = { value: number; suffix: string; color: string; label: string };
 
 const stats: Stat[] = [
   { value: 12, suffix: "K+", color: "text-brand-red", label: "Pontos de Venda ativos" },
-  { value: 4, suffix: " EST", color: "text-brand-blue", label: "Estados cobertos" },
-  { value: 48, suffix: "K", color: "text-brand-gold", label: "Exemplares por edição" },
-  { value: 3, suffix: "×", color: "text-brand-blue", label: "Edições por ano" },
+  { value: 4, suffix: " EST", color: "text-white", label: "Estados cobertos" },
+  { value: 48, suffix: "K", color: "text-white", label: "Exemplares por edição" },
+  { value: 3, suffix: "×", color: "text-white", label: "Edições por ano" },
 ];
 
 function StatCard({ stat }: { stat: Stat }) {
@@ -16,7 +16,7 @@ function StatCard({ stat }: { stat: Stat }) {
       ref={ref}
       className="group relative bg-bg p-10 border-l-4 border-brand-blue hover:-translate-y-1 transition-transform"
     >
-      <div className="absolute top-0 left-0 right-0 h-px bg-brand-gold scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-white/40 scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
       <div className={`font-display text-7xl ${stat.color}`}>
         {Math.round(value)}{stat.suffix}
       </div>

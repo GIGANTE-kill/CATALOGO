@@ -52,6 +52,7 @@ function Check({ on, highlight }: { on: boolean; highlight?: boolean }) {
         className="w-4 h-4 inline-flex items-center justify-center text-[10px] font-bold rounded-sm shrink-0"
         style={{
           background: highlight ? "var(--brand-red)" : "var(--brand-blue)",
+
           color: "white",
         }}
       >
@@ -78,12 +79,12 @@ export function Pacotes() {
               }`}
             >
               {p.highlight && (
-                <div className="absolute -top-3 right-6 bg-brand-gold text-bg px-3 py-1 text-xs font-bold uppercase tracking-widest font-condensed rounded">
+                <div className="absolute -top-3 right-6 bg-white text-bg px-3 py-1 text-xs font-bold uppercase tracking-widest font-condensed rounded">
                   Recomendado
                 </div>
               )}
               <h3 className="font-display text-2xl text-white tracking-widest">{p.name}</h3>
-              <div className={`font-display text-6xl mt-4 ${p.highlight ? "text-brand-gold" : "text-white"}`}>
+              <div className="font-display text-6xl mt-4 text-white">
                 {p.price}
               </div>
               <div className="text-brand-muted text-xs uppercase tracking-widest mt-1 font-condensed">

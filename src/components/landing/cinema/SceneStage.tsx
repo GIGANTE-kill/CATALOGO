@@ -49,7 +49,7 @@ export function SceneStage({ scenes, activeScene }: Props) {
             <img
               src={s.image}
               alt={s.imageAlt}
-              className="max-h-[58vh] sm:max-h-[65vh] md:max-h-[110vh] w-auto object-contain drop-shadow-2xl"
+              className="max-h-[75vh] sm:max-h-[85vh] md:max-h-[110vh] w-auto object-contain drop-shadow-2xl"
               loading="eager"
               decoding="async"
               fetchPriority={i === 0 ? "high" : "auto"}

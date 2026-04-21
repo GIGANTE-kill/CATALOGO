@@ -1,8 +1,12 @@
 import { useEffect, useRef } from "react";
 import logoDsr from "@/assets/logo-dsr.png";
-import logoBaly from "@/assets/logo-baly.png";
 
-export function Navbar() {
+type NavbarProps = {
+  fornecedorLogo?: string;
+  fornecedorNome?: string;
+};
+
+export function Navbar({ fornecedorLogo, fornecedorNome }: NavbarProps = {}) {
   const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -63,9 +67,15 @@ export function Navbar() {
         <div className="flex items-center gap-3.5">
           <img src={logoDsr} alt="Distribuidora São Roque" className="h-12 md:h-20 object-contain" />
         </div>
-        <div className="flex items-center gap-3.5">
-          <img src={logoBaly} alt="Baly" className="h-7 md:h-10 object-contain" />
-        </div>
+        {fornecedorLogo && (
+          <div className="flex items-center gap-3.5">
+            <img
+              src={fornecedorLogo}
+              alt={fornecedorNome ?? "Fornecedor"}
+              className="h-7 md:h-10 object-contain"
+            />
+          </div>
+        )}
       </nav>
     </div>
   );

@@ -62,13 +62,6 @@ export function Navbar() {
         <div className="flex items-center gap-3.5">
           <img src={logoDsr} alt="Distribuidora São Roque" className="h-28 md:h-32 object-contain" />
         </div>
-        <a
-          href="#cta"
-          className="font-bold text-xs bg-brand-red text-white px-5 py-2.5 rounded hover:-translate-y-px transition-all"
-          style={{ textDecoration: "none" }}
-        >
-          VER PROPOSTA
-        </a>
       </nav>
     </div>
   );

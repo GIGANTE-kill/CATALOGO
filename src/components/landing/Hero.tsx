@@ -79,20 +79,6 @@ export function Hero() {
             A Distribuidora São Roque conecta seus produtos a milhares de pontos de venda estratégicos. Garanta visibilidade máxima e destaque sua marca exatamente onde o varejista toma a decisão de abastecimento.
           </p>
 
-          <div className="reveal order-6 md:order-none hidden md:flex flex-wrap gap-4" style={{ transitionDelay: "0.3s" }}>
-            <a
-              href="#pacotes"
-              className="bg-brand-red text-white px-7 py-4 rounded font-bold tracking-wider text-sm hover:-translate-y-0.5 transition-transform"
-            >
-              VER PACOTES DE ANÚNCIO →
-            </a>
-            <a
-              href="#numeros"
-              className="border-2 border-brand-blue text-white px-7 py-4 rounded font-bold tracking-wider text-sm hover:bg-brand-blue/20 transition-colors"
-            >
-              DESCOBRIR MAIS
-            </a>
-          </div>
 
           <div className="reveal order-7 md:order-none pt-2 md:pt-8 flex items-center gap-3 text-brand-muted text-xs font-condensed tracking-widest uppercase" style={{ transitionDelay: "0.5s" }}>
             <span>Role para descobrir</span>

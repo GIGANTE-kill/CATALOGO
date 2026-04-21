@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { CanPlaceholder } from "./CanPlaceholder";
+import heroBg from "@/assets/hero-bg.png";
 
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -19,17 +20,36 @@ export function Hero() {
     <motion.section
       ref={ref}
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden px-8 pt-[100px] pb-[60px]"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden px-8 pt-[100px] pb-[60px] bg-bg"
       style={{ position: "relative" }}
     >
+      {/* Gradient background image */}
       <div
-        className="absolute top-0 left-0 right-0 h-[3px]"
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: `url(${heroBg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          opacity: 0.55,
+        }}
+      />
+      {/* Dark vignette overlay for legibility */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, rgba(10,15,30,0.35) 0%, rgba(10,15,30,0.85) 100%)",
+        }}
+      />
+
+      <div
+        className="absolute top-0 left-0 right-0 h-[3px] z-20"
         style={{
           background:
             "linear-gradient(90deg, transparent, #E01E2B, #FFD600, #E01E2B, transparent)",
         }}
       />
-      <div className="absolute inset-0 grid-bg" />
+      <div className="absolute inset-0 grid-bg opacity-30" />
 
       {/* Orbs */}
       <div

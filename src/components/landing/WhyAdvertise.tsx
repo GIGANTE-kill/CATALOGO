@@ -74,20 +74,7 @@ export function WhyAdvertise() {
 
         {/* RIGHT */}
         <div>
-          <div className="grid grid-cols-2 gap-px bg-bg3 border border-brand-blue/20">
-            {[
-              { v: "26%", color: "text-brand-gold", l: "Market share Brasil" },
-              { v: "50%", color: "text-white", l: "Crescimento anual" },
-              { v: "80%", color: "text-brand-gold", l: "Lembrança de marca" },
-              { v: "9+", color: "text-white", l: "Anos de liderança regional" },
-            ].map((d) => (
-              <div key={d.l} className="bg-bg2 p-6">
-                <div className={`font-display text-5xl ${d.color}`}>{d.v}</div>
-                <div className="text-brand-muted text-xs uppercase tracking-widest mt-2 font-condensed">{d.l}</div>
-              </div>
-            ))}
-          </div>
-          <h3 className="font-display text-2xl text-white mt-10 mb-3 tracking-widest uppercase">
+          <h3 className="font-display text-2xl text-white mb-3 tracking-widest uppercase">
             Onde a Baly já é forte
           </h3>
           <Bars />

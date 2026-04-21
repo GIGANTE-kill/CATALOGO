@@ -190,6 +190,6 @@
 .animate-scroll-hint { animation: scrollHint 1.5s ease-in-out infinite; }
 .animate-ticker { animation: ticker 20s linear infinite; }
 @media (min-width: 768px) {
-  .animate-ticker { animation-duration: 40s; }
+  .animate-ticker { animation-duration: 25s; }
 }
 .animate-pulse-dot { animation: pulseDot 1.5s ease-in-out infinite; }

@@ -50,7 +50,7 @@ export function Navbar() {
     <div className="sticky top-0 z-[200] h-0">
       <nav
         ref={navRef}
-        className="px-9 py-3.5 flex items-center justify-between md:backdrop-blur-xl border-b border-brand-blue/20"
+        className="px-9 py-2 flex items-center justify-between md:backdrop-blur-xl border-b border-brand-blue/20"
         style={{
           background: "rgba(7,17,31,0.98)",
           // Promove a uma camada GPU para evitar jitter/repaint em Safari/Firefox
@@ -61,10 +61,10 @@ export function Navbar() {
         }}
       >
         <div className="flex items-center gap-3.5">
-          <img src={logoDsr} alt="Distribuidora São Roque" className="h-20 md:h-40 object-contain" />
+          <img src={logoDsr} alt="Distribuidora São Roque" className="h-12 md:h-40 object-contain" />
         </div>
         <div className="flex items-center gap-3.5">
-          <img src={logoBaly} alt="Baly" className="h-8 md:h-14 object-contain" />
+          <img src={logoBaly} alt="Baly" className="h-7 md:h-14 object-contain" />
         </div>
       </nav>
     </div>

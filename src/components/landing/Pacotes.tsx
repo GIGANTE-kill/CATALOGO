@@ -13,6 +13,7 @@ type Format = {
   monthly: string;
   highlight?: boolean;
   Icon: () => React.ReactElement;
+  image: string;
 };
 
 const PageFullIcon = () => (
@@ -48,6 +49,7 @@ const formats: Format[] = [
     monthly: "R$ 625/mês",
     highlight: true,
     Icon: PageFullIcon,
+    image: pngPaginaInteira,
   },
   {
     name: "MEIA PÁGINA",
@@ -56,6 +58,7 @@ const formats: Format[] = [
     price: "R$ 8.000",
     monthly: "R$ 333/mês",
     Icon: PageHalfIcon,
+    image: pngMeiaPagina,
   },
   {
     name: "1/4 DE PÁGINA",
@@ -64,6 +67,7 @@ const formats: Format[] = [
     price: "R$ 4.500",
     monthly: "R$ 187/mês",
     Icon: PageQuarterIcon,
+    image: pngUmQuarto,
   },
 ];
 

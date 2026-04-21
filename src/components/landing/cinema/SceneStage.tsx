@@ -9,11 +9,11 @@ export function SceneStage({ scenes, activeScene }: Props) {
   const current = scenes[activeScene];
 
   return (
-    <div className="relative z-10 max-w-[1600px] w-full mx-auto px-5 sm:px-8 grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-6 md:gap-10 items-center">
+    <div className="relative z-10 max-w-[1600px] w-full mx-auto px-5 sm:px-8 grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-2 md:gap-10 items-center">
       {/* TEXT */}
       <div
         key={activeScene}
-        className="space-y-3 md:space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-700 order-2 md:order-1 text-center md:text-left"
+        className="relative z-20 space-y-3 md:space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-700 order-2 md:order-1 text-center md:text-left -mt-8 md:mt-0"
       >
         <div
           className="font-condensed font-bold tracking-[0.25em] md:tracking-[0.3em] text-[10px] sm:text-xs md:text-sm uppercase"
@@ -31,10 +31,10 @@ export function SceneStage({ scenes, activeScene }: Props) {
       </div>
 
       {/* AD FORMAT IMAGES */}
-      <div className="flex justify-center items-center relative h-[75vh] sm:h-[85vh] md:h-[110vh] order-1 md:order-2">
+      <div className="flex justify-center items-center relative h-[45vh] sm:h-[60vh] md:h-[110vh] order-1 md:order-2">
         <div
-          className="absolute bottom-4 md:bottom-10 left-1/2 -translate-x-1/2 w-[300px] md:w-[500px] h-[80px] md:h-[140px] rounded-full transition-all duration-700"
-          style={{ background: current.glow, filter: "blur(60px)" }}
+          className="absolute bottom-0 md:bottom-10 left-1/2 -translate-x-1/2 w-[260px] md:w-[500px] h-[60px] md:h-[140px] rounded-full transition-all duration-700 opacity-60 md:opacity-100"
+          style={{ background: current.glow, filter: "blur(50px)" }}
         />
         {scenes.map((s, i) => (
           <div
@@ -49,7 +49,7 @@ export function SceneStage({ scenes, activeScene }: Props) {
             <img
               src={s.image}
               alt={s.imageAlt}
-              className="max-h-[75vh] sm:max-h-[85vh] md:max-h-[110vh] w-auto object-contain drop-shadow-2xl"
+              className="max-h-[45vh] sm:max-h-[60vh] md:max-h-[110vh] w-auto object-contain drop-shadow-2xl"
               loading="eager"
               decoding="async"
               fetchPriority={i === 0 ? "high" : "auto"}

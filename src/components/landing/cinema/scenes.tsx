@@ -20,7 +20,7 @@ export const scenes: Scene[] = [
     kicker: "Formato premium",
     kickerColor: "var(--brand-red)",
     title: <>PÁGINA<br /><span className="text-brand-red">INTEIRA</span></>,
-    text: "Domínio visual absoluto. Sua marca ocupa toda a página do catálogo, sem concorrência por atenção. Ideal para lançamentos e campanhas de impacto.",
+    text: "Domínio visual absoluto. Sua marca ocupa toda a página do catálogo. Ideal para lançamentos e campanhas de impacto.",
     extra: (
       <div className="grid grid-cols-2 gap-6 mt-8">
         <div>

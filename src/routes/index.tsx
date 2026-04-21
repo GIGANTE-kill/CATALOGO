@@ -40,8 +40,8 @@ function Index() {
         <Hero />
         <CinemaScroll />
         <Ticker />
-        <Stats />
         <WhyAdvertise />
+        <Stats />
         <Pacotes />
         <Quote />
         <CTAFinal />

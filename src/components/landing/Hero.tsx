@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { CanPlaceholder } from "./CanPlaceholder";
+import { PromoVideo } from "./PromoVideo";
 import heroBg from "@/assets/hero-bg.png";
 
 export function Hero() {
@@ -127,6 +128,11 @@ export function Hero() {
             }}
           />
           <CanPlaceholder className="animate-can relative z-10" />
+        </div>
+
+        {/* Promo Video — mobile only, abaixo do catálogo */}
+        <div className="order-[3.5] md:hidden w-full max-w-sm mx-auto reveal" style={{ transitionDelay: "0.45s" }}>
+          <PromoVideo storageKey="promo-video-time" />
         </div>
       </motion.div>
     </motion.section>

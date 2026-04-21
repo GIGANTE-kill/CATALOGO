@@ -1,4 +1,5 @@
 import { Reveal, RevealItem } from "./Reveal";
+import { PromoVideo } from "./PromoVideo";
 
 const pillars = [
   {
@@ -95,6 +96,11 @@ export function WhyAdvertise() {
             <span className="text-brand-red">bíblia de vendas</span> do nosso consultor. Estar
             nele é garantir que o nosso time vende a sua marca em cada visita."
           </p>
+        </Reveal>
+
+        {/* Promo Video — desktop only, abaixo da frase */}
+        <Reveal variant="fade-up" delay={0.2} className="hidden md:block mt-12 max-w-md mx-auto">
+          <PromoVideo storageKey="promo-video-time-desktop" />
         </Reveal>
       </div>
     </section>

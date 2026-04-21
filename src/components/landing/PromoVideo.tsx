@@ -84,7 +84,7 @@ export function PromoVideo({ className = "", storageKey = "promo-video-time" }: 
         poster={promoPosterUrl}
         muted={muted}
         playsInline
-        loop={false}
+        loop
         preload="auto"
         className="absolute inset-0 w-full h-full object-cover"
       />

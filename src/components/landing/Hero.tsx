@@ -82,7 +82,7 @@ export function Hero() {
         </div>
 
         {/* RIGHT - Can */}
-        <div className="hidden md:flex justify-center items-center relative reveal" style={{ transitionDelay: "0.4s" }}>
+        <div className="flex justify-center items-center relative reveal order-first md:order-none mb-4 md:mb-0" style={{ transitionDelay: "0.4s" }}>
           <div
             className="absolute bottom-0 left-1/2 w-[300px] h-[80px] rounded-full animate-glow-pulse"
             style={{

@@ -169,25 +169,25 @@ function InlineFormatCard({ format }: { format: Format }) {
       </p>
 
       <div className="mt-10 pt-6 border-t border-white/10 space-y-4">
-        <div className="flex items-baseline justify-between">
-          <span className="font-display text-white/40 text-xs tracking-[0.25em]">
+        <div className="flex items-baseline justify-between gap-3">
+          <span className="font-display text-white/40 text-xs tracking-[0.25em] shrink-0">
             INVESTIMENTO
           </span>
-          <span className={`font-display text-3xl ${format.highlight ? "text-brand-red" : "text-white"}`}>
+          <span className={`font-display text-2xl sm:text-3xl whitespace-nowrap ${format.highlight ? "text-brand-red" : "text-white"}`}>
             {format.price}
           </span>
         </div>
-        <div className="flex items-baseline justify-between">
-          <span className="font-display text-white/40 text-xs tracking-[0.25em]">
+        <div className="flex items-baseline justify-between gap-3">
+          <span className="font-display text-white/40 text-xs tracking-[0.25em] shrink-0">
             EQUIVALE A
           </span>
-          <span className="font-display text-base text-white/70">{format.monthly}</span>
+          <span className="font-display text-base text-white/70 whitespace-nowrap">{format.monthly}</span>
         </div>
-        <div className="flex items-baseline justify-between pt-2 border-t border-white/5">
-          <span className="font-display text-white/40 text-xs tracking-[0.25em]">
+        <div className="flex items-baseline justify-between gap-3 pt-2 border-t border-white/5">
+          <span className="font-display text-white/40 text-xs tracking-[0.25em] shrink-0">
             EXPOSIÇÃO
           </span>
-          <span className="font-display text-sm text-white/70 tracking-wider">
+          <span className="font-display text-sm text-white/70 tracking-wider whitespace-nowrap">
             24 MESES
           </span>
         </div>

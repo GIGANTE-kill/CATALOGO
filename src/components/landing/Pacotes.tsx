@@ -4,6 +4,8 @@ type Format = {
   name: string;
   short: string;
   description: string;
+  price: string;
+  monthly: string;
   highlight?: boolean;
   Icon: () => React.ReactElement;
 };
@@ -37,6 +39,8 @@ const formats: Format[] = [
     name: "PÁGINA INTEIRA",
     short: "FORMATO MASTER",
     description: "24 meses de domínio absoluto da atenção do lojista.",
+    price: "R$ 15.000",
+    monthly: "R$ 625/mês",
     highlight: true,
     Icon: PageFullIcon,
   },
@@ -44,12 +48,16 @@ const formats: Format[] = [
     name: "MEIA PÁGINA",
     short: "FORMATO TÁTICO",
     description: "Destaque tático com alta recorrência visual no PDV.",
+    price: "R$ 8.000",
+    monthly: "R$ 333/mês",
     Icon: PageHalfIcon,
   },
   {
     name: "1/4 DE PÁGINA",
     short: "FORMATO ESSENCIAL",
     description: "Garantia de marca lembrada em cada ciclo de abastecimento.",
+    price: "R$ 4.500",
+    monthly: "R$ 187/mês",
     Icon: PageQuarterIcon,
   },
 ];
@@ -100,17 +108,35 @@ export function Pacotes() {
                 {f.description}
               </p>
 
-              <div className="mt-10 pt-6 border-t border-white/10 flex items-baseline justify-between">
-                <span className="font-display text-white/40 text-xs tracking-[0.25em]">
-                  EXPOSIÇÃO
-                </span>
-                <span
-                  className={`font-display text-2xl ${
-                    f.highlight ? "text-brand-red" : "text-white"
-                  }`}
-                >
-                  24 MESES
-                </span>
+              <div className="mt-10 pt-6 border-t border-white/10 space-y-4">
+                <div className="flex items-baseline justify-between">
+                  <span className="font-display text-white/40 text-xs tracking-[0.25em]">
+                    INVESTIMENTO
+                  </span>
+                  <span
+                    className={`font-display text-3xl ${
+                      f.highlight ? "text-brand-red" : "text-white"
+                    }`}
+                  >
+                    {f.price}
+                  </span>
+                </div>
+                <div className="flex items-baseline justify-between">
+                  <span className="font-display text-white/40 text-xs tracking-[0.25em]">
+                    EQUIVALE A
+                  </span>
+                  <span className="font-display text-base text-white/70">
+                    {f.monthly}
+                  </span>
+                </div>
+                <div className="flex items-baseline justify-between pt-2 border-t border-white/5">
+                  <span className="font-display text-white/40 text-xs tracking-[0.25em]">
+                    EXPOSIÇÃO
+                  </span>
+                  <span className="font-display text-sm text-white/70 tracking-wider">
+                    24 MESES
+                  </span>
+                </div>
               </div>
             </div>
           ))}

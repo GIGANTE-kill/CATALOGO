@@ -3,7 +3,6 @@ import { PromoVideo } from "./PromoVideo";
 import heroBg from "@/assets/hero-bg.png";
 
 export function Hero() {
-
   return (
     <section
       id="hero"

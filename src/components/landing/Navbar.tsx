@@ -2,7 +2,7 @@ import logoDsr from "@/assets/logo-dsr.png";
 
 export function Navbar() {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-[200] px-9 py-3.5 flex items-center justify-between backdrop-blur-xl border-b border-brand-blue/20" style={{ background: "rgba(7,17,31,0.92)" }}>
+    <nav className="fixed top-0 left-0 right-0 z-[200] px-9 py-3.5 flex items-center justify-between md:backdrop-blur-xl border-b border-brand-blue/20" style={{ background: "rgba(7,17,31,0.98)" }}>
       <div className="flex items-center gap-3.5">
         <img src={logoDsr} alt="Distribuidora São Roque" className="h-28 md:h-32 object-contain" />
       </div>

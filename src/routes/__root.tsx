@@ -71,10 +71,57 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
-    window.history.scrollRestoration = "manual";
+    try {
+      window.history.scrollRestoration = "manual";
+    } catch {
+      // Safari pode lançar em alguns contextos; ignoramos
+    }
   }
+
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // Detecta se foi um reload (vs. navegação normal)
+    let isReload = false;
+    try {
+      const navEntries = performance.getEntriesByType("navigation") as PerformanceNavigationTiming[];
+      if (navEntries.length > 0) {
+        isReload = navEntries[0].type === "reload";
+      } else if ((performance as unknown as { navigation?: { type: number } }).navigation) {
+        // Safari antigo / fallback
+        isReload = (performance as unknown as { navigation: { type: number } }).navigation.type === 1;
+      }
+    } catch {
+      // ignore
+    }
+
+    const scrollTop = () => {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    };
+
+    // Scroll imediato
+    scrollTop();
+
+    // Safari/iOS às vezes restaura o scroll DEPOIS do mount inicial.
+    // Forçamos novamente nos próximos frames se for reload.
+    if (isReload) {
+      requestAnimationFrame(scrollTop);
+      const t1 = window.setTimeout(scrollTop, 0);
+      const t2 = window.setTimeout(scrollTop, 50);
+      const t3 = window.setTimeout(scrollTop, 200);
+      // Marca no history state para indicar que já tratamos esse reload
+      try {
+        window.history.replaceState({ ...window.history.state, __scrollReset: Date.now() }, "");
+      } catch {
+        // ignore
+      }
+      return () => {
+        clearTimeout(t1);
+        clearTimeout(t2);
+        clearTimeout(t3);
+      };
+    }
   }, []);
+
   return <Outlet />;
 }

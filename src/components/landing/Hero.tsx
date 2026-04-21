@@ -45,7 +45,7 @@ export function Hero() {
         {/* LEFT */}
         <div className="space-y-7">
           <div className="reveal inline-flex items-center gap-2 px-4 py-2 rounded-full border border-brand-gold/40 bg-brand-gold/5 text-brand-gold text-xs font-bold tracking-widest font-condensed uppercase">
-            ★ Proposta exclusiva · DSR × Baly · 2025
+            ★ Proposta exclusiva
           </div>
 
           <h1 className="reveal font-display text-white leading-[0.85] text-6xl sm:text-7xl md:text-8xl lg:text-9xl" style={{ transitionDelay: "0.1s" }}>

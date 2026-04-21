@@ -18,13 +18,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Proposta exclusiva da Distribuidora São Roque: anuncie no catálogo que chega a +12.000 PDVs na nossa área de atuação.",
+          "Proposta exclusiva da Distribuidora São Roque: anuncie no catálogo que chega a +9.000 PDVs em 94% da Bahia.",
       },
       { property: "og:title", content: "DSR — Catálogo que Move o Mercado" },
       {
         property: "og:description",
         content:
-          "Sua marca no catálogo que vende. +12K PDVs, 4 estados, 48K exemplares por edição.",
+          "Sua marca no catálogo que vende. +9K PDVs em 94% da Bahia, 48K exemplares por edição.",
       },
     ],
   }),

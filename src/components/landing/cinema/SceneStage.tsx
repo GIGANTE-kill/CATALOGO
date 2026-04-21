@@ -31,7 +31,7 @@ export function SceneStage({ scenes, activeScene }: Props) {
       </div>
 
       {/* AD FORMAT IMAGES */}
-      <div className="flex justify-center items-center relative h-[58vh] sm:h-[65vh] md:h-[110vh] order-1 md:order-2">
+      <div className="flex justify-center items-center relative h-[75vh] sm:h-[85vh] md:h-[110vh] order-1 md:order-2">
         <div
           className="absolute bottom-4 md:bottom-10 left-1/2 -translate-x-1/2 w-[300px] md:w-[500px] h-[80px] md:h-[140px] rounded-full transition-all duration-700"
           style={{ background: current.glow, filter: "blur(60px)" }}
@@ -49,7 +49,7 @@ export function SceneStage({ scenes, activeScene }: Props) {
             <img
               src={s.image}
               alt={s.imageAlt}
-              className="max-h-[58vh] sm:max-h-[65vh] md:max-h-[110vh] w-auto object-contain drop-shadow-2xl"
+              className="max-h-[75vh] sm:max-h-[85vh] md:max-h-[110vh] w-auto object-contain drop-shadow-2xl"
               loading="eager"
               decoding="async"
               fetchPriority={i === 0 ? "high" : "auto"}

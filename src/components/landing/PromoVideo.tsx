@@ -66,8 +66,8 @@ export function PromoVideo({ className = "", storageKey = "promo-video-time" }: 
     >
       <video
         ref={videoRef}
-        src="/videos/catalogo-promo.mp4"
-        poster="/videos/catalogo-promo-poster.jpg"
+        src="/videos/catalogo-promo.mp4?v=2"
+        poster="/videos/catalogo-promo-poster.jpg?v=2"
         muted
         playsInline
         loop={false}

@@ -31,15 +31,15 @@ export function SceneStage({ scenes, activeScene }: Props) {
       </div>
 
       {/* AD FORMAT IMAGES */}
-      <div className="flex justify-start md:justify-center items-start md:items-center relative h-[42vh] sm:h-[55vh] md:h-[110vh] order-1 md:order-2 pt-4 md:pt-0">
+      <div className="flex justify-center md:justify-center items-end md:items-center relative h-[42vh] sm:h-[55vh] md:h-[110vh] order-1 md:order-2 pt-4 md:pt-0 -mb-6 md:mb-0">
         <div
-          className="absolute bottom-0 md:bottom-10 left-1/2 -translate-x-1/2 w-[280px] md:w-[500px] h-[70px] md:h-[140px] rounded-full transition-all duration-700 opacity-70 md:opacity-100 z-0"
+          className="absolute bottom-2 md:bottom-10 left-1/2 -translate-x-1/2 w-[280px] md:w-[500px] h-[70px] md:h-[140px] rounded-full transition-all duration-700 opacity-70 md:opacity-100 z-0"
           style={{ background: current.glow, filter: "blur(55px)" }}
         />
         {scenes.map((s, i) => (
           <div
             key={i}
-            className="absolute inset-0 flex justify-center items-start md:items-center transition-all duration-700 ease-out z-10 pt-2 md:pt-0"
+            className="absolute inset-0 flex justify-center items-end md:items-center transition-all duration-700 ease-out z-10 pb-2 md:pb-0 md:pt-0"
             style={{
               opacity: i === activeScene ? 1 : 0,
               transform: `rotate(${i === activeScene ? s.rotate : 0}deg) scale(${i === activeScene ? s.scale : 0.92})`,

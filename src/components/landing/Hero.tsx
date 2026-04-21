@@ -1,28 +1,13 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
 import { CanPlaceholder } from "./CanPlaceholder";
 import { PromoVideo } from "./PromoVideo";
 import heroBg from "@/assets/hero-bg.png";
 
 export function Hero() {
-  const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-  const filter = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ["blur(0px)", "blur(10px)"]
-  );
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.3]);
 
   return (
-    <motion.section
-      ref={ref}
+    <section
       id="hero"
       className="relative min-h-screen flex items-center justify-center overflow-hidden px-8 pt-[100px] pb-[60px] bg-bg"
-      style={{ position: "relative" }}
     >
       {/* Gradient background image */}
       <div

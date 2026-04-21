@@ -16,7 +16,7 @@ export function CTAFinal() {
           <span className="text-white">?</span>
         </h2>
         <p className="reveal text-brand-muted text-lg mt-6 max-w-2xl mx-auto" style={{ transitionDelay: "0.1s" }}>
-          A próxima edição já está em produção. Garanta agora a sua posição no catálogo que move o varejo do Nordeste.
+          A próxima edição já está em produção. Garanta agora a sua posição no catálogo que move o varejo da nossa área de atuação.
         </p>
         <div className="reveal flex flex-wrap gap-4 justify-center mt-10" style={{ transitionDelay: "0.2s" }}>
           <a

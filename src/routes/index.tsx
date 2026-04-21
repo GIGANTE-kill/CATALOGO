@@ -14,13 +14,13 @@ import { useReveal } from "@/components/landing/useReveal";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "DSR × Baly — Catálogo que Move o Mercado" },
+      { title: "DSR — Catálogo que Move o Mercado" },
       {
         name: "description",
         content:
-          "Proposta exclusiva da Distribuidora São Roque para a Baly: anuncie no catálogo que chega a +12.000 PDVs no Nordeste.",
+          "Proposta exclusiva da Distribuidora São Roque: anuncie no catálogo que chega a +12.000 PDVs na nossa área de atuação.",
       },
-      { property: "og:title", content: "DSR × Baly — Catálogo que Move o Mercado" },
+      { property: "og:title", content: "DSR — Catálogo que Move o Mercado" },
       {
         property: "og:description",
         content:

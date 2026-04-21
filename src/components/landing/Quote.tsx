@@ -9,10 +9,10 @@ export function Quote() {
           "
         </div>
         <p className="relative font-display text-white text-3xl sm:text-4xl md:text-5xl leading-tight tracking-wide">
-          A Baly democratizou o energético no Brasil. A <span className="text-brand-red">DSR</span> democratiza a presença da Baly <span className="text-brand-gold">em cada ponto de venda do Nordeste</span>.
+          A <span className="text-brand-red">DSR</span> leva sua marca <span className="text-white">a cada ponto de venda da nossa área de atuação</span>.
         </p>
         <div className="mt-10 text-brand-muted text-sm uppercase tracking-[0.3em] font-condensed">
-          — Proposta de parceria DSR × Baly · 2025
+          — Proposta de parceria DSR · 2026
         </div>
       </div>
     </section>

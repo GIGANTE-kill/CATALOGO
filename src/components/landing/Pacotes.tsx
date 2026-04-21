@@ -19,7 +19,7 @@ const pkgs: Pkg[] = [
     ],
   },
   {
-    name: "BALY EM EVIDÊNCIA",
+    name: "MARCA EM EVIDÊNCIA",
     price: "R$ 5.800",
     highlight: true,
     items: [
@@ -32,7 +32,7 @@ const pkgs: Pkg[] = [
     ],
   },
   {
-    name: "BALY EVERYWHERE",
+    name: "MARCA EVERYWHERE",
     price: "R$ 9.500",
     items: [
       { label: "Capa + contracapa + miolo", on: true },

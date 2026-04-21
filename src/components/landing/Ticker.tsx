@@ -1,9 +1,9 @@
 const items = [
-  "Maior distribuidora do Nordeste",
+  "Distribuidora estratégica na nossa área de atuação",
   "+12.000 PDVs ativos",
-  "Baly #1 em energéticos no Brasil",
-  "26% de market share nacional",
-  "50% crescimento ao ano",
+  "Sua marca no ponto de decisão",
+  "Catálogo que move o varejo",
+  "48K exemplares por edição",
   "Catálogo em 4 estados",
   "Sua marca onde decide a compra",
 ];
@@ -18,7 +18,7 @@ export function Ticker() {
             <span className="font-condensed font-bold uppercase tracking-[2px] text-white text-lg">
               {item}
             </span>
-            <span className="text-brand-gold text-xl rotate-45 inline-block">◆</span>
+            <span className="text-white/70 text-xl rotate-45 inline-block">◆</span>
           </div>
         ))}
       </div>

@@ -5,13 +5,6 @@ export function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-[200] px-9 py-3.5 flex items-center justify-between backdrop-blur-xl border-b border-brand-blue/20" style={{ background: "rgba(7,17,31,0.92)" }}>
       <div className="flex items-center gap-3.5">
         <img src={logoDsr} alt="Distribuidora São Roque" className="h-9 object-contain" />
-        <div className="w-px h-[26px] bg-brand-blue/50" />
-        <img
-          src="https://cdn.prod.website-files.com/67a512ae2e2cf2d14d55b83b/67a573e2df1a27d6e6b5f927_baly-logo.svg"
-          alt="Baly"
-          className="h-5 object-contain opacity-65"
-          style={{ filter: "brightness(0) invert(1)" }}
-        />
       </div>
       <a
         href="#cta"

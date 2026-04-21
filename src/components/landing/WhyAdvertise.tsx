@@ -1,7 +1,7 @@
 const features = [
   { icon: "⚡", title: "Presença no ponto de decisão", text: "Sua marca aparece exatamente onde o lojista decide o próximo pedido." },
-  { icon: "🎯", title: "Segmentação sem desperdício", text: "100% dos leitores são compradores de bebida — zero verba jogada fora." },
-  { icon: "🏆", title: "Associação de marca líder", text: "Anuncie ao lado das maiores marcas do mercado de bebidas." },
+  { icon: "🎯", title: "Segmentação sem desperdício", text: "100% dos leitores são compradores ativos — zero verba jogada fora." },
+  { icon: "🏆", title: "Associação de marca líder", text: "Anuncie ao lado das maiores marcas do mercado." },
   { icon: "📊", title: "Relatório de resultado", text: "Receba métricas reais de impacto da sua campanha." },
 ];
 

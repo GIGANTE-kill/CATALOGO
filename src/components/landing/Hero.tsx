@@ -77,24 +77,24 @@ export function Hero() {
         }}
       />
 
-      <motion.div style={{ filter, opacity }} className="relative z-10 max-w-[1400px] w-full mx-auto grid md:grid-cols-2 gap-12 items-center">
+      <motion.div style={{ filter, opacity }} className="relative z-10 max-w-[1400px] w-full mx-auto flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-12 items-center md:items-stretch">
         {/* LEFT */}
-        <div className="space-y-7">
-          <div className="reveal inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/15 bg-white/5 text-white/80 text-xs font-bold tracking-widest font-condensed uppercase">
+        <div className="contents md:block md:space-y-7">
+          <div className="reveal order-1 md:order-none inline-flex self-start items-center gap-2 px-4 py-2 rounded-full border border-white/15 bg-white/5 text-white/80 text-xs font-bold tracking-widest font-condensed uppercase">
             ★ Proposta exclusiva
           </div>
 
-          <h1 className="reveal font-display text-white leading-[0.85] text-6xl sm:text-7xl md:text-8xl lg:text-9xl" style={{ transitionDelay: "0.1s" }}>
+          <h1 className="reveal order-2 md:order-none font-display text-white leading-[0.85] text-5xl sm:text-7xl md:text-8xl lg:text-9xl" style={{ transitionDelay: "0.1s" }}>
             SUA MARCA<br />
             NO <span className="text-brand-red">CATÁLOGO</span><br />
             QUE VENDE
           </h1>
 
-          <p className="reveal text-brand-muted text-lg max-w-xl leading-relaxed font-light" style={{ transitionDelay: "0.2s" }}>
+          <p className="reveal order-4 md:order-none text-brand-muted text-base md:text-lg max-w-xl leading-relaxed font-light" style={{ transitionDelay: "0.2s" }}>
             A Distribuidora São Roque conecta seus produtos a milhares de pontos de venda estratégicos. Garanta visibilidade máxima e destaque sua marca exatamente onde o varejista toma a decisão de abastecimento.
           </p>
 
-          <div className="reveal hidden md:flex flex-wrap gap-4" style={{ transitionDelay: "0.3s" }}>
+          <div className="reveal order-5 md:order-none hidden md:flex flex-wrap gap-4" style={{ transitionDelay: "0.3s" }}>
             <a
               href="#pacotes"
               className="bg-brand-red text-white px-7 py-4 rounded font-bold tracking-wider text-sm hover:-translate-y-0.5 transition-transform"
@@ -109,7 +109,7 @@ export function Hero() {
             </a>
           </div>
 
-          <div className="reveal pt-8 flex items-center gap-3 text-brand-muted text-xs font-condensed tracking-widest uppercase" style={{ transitionDelay: "0.5s" }}>
+          <div className="reveal order-6 md:order-none pt-2 md:pt-8 flex items-center gap-3 text-brand-muted text-xs font-condensed tracking-widest uppercase" style={{ transitionDelay: "0.5s" }}>
             <span>Role para descobrir</span>
             <div className="flex flex-col animate-scroll-hint">
               <span>↓</span>
@@ -117,8 +117,8 @@ export function Hero() {
           </div>
         </div>
 
-        {/* RIGHT - Can */}
-        <div className="flex justify-center items-center relative reveal order-first md:order-none mb-4 md:mb-0" style={{ transitionDelay: "0.4s" }}>
+        {/* RIGHT - Catálogo */}
+        <div className="order-3 md:order-none flex justify-center items-center relative reveal" style={{ transitionDelay: "0.4s" }}>
           <div
             className="absolute bottom-0 left-1/2 w-[300px] h-[80px] rounded-full animate-glow-pulse"
             style={{

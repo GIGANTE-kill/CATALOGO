@@ -67,10 +67,11 @@ export function PromoVideo({ className = "", storageKey = "promo-video-time" }: 
       <video
         ref={videoRef}
         src="/videos/catalogo-promo.mp4"
+        poster="/videos/catalogo-promo-poster.jpg"
         muted
         playsInline
         loop={false}
-        preload="metadata"
+        preload="auto"
         className="absolute inset-0 w-full h-full object-cover"
       />
     </div>

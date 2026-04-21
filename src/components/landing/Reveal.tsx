@@ -95,7 +95,7 @@ export function RevealItem({
   variant?: Variant;
   duration?: number;
   className?: string;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 }) {
   return (
     <motion.div

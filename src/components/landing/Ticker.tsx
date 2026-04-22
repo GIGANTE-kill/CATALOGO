@@ -1,5 +1,5 @@
 const items = [
-  "48.000 exemplares distribuídos",
+  "+500 catálogos distribuídos",
   "24 meses no campo",
   "Catálogo na mão de cada vendedor",
   "Sua marca no ponto de decisão",

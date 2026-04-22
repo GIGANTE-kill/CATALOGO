@@ -2,6 +2,7 @@ import { Navbar } from "@/components/landing/Navbar";
 import { Hero } from "@/components/landing/Hero";
 import { Ticker } from "@/components/landing/Ticker";
 import { WhyAdvertise } from "@/components/landing/WhyAdvertise";
+import { Checklist } from "@/components/landing/Checklist";
 import { CinemaScroll } from "@/components/landing/CinemaScroll";
 import { Stats } from "@/components/landing/Stats";
 import { Quote } from "@/components/landing/Quote";
@@ -35,6 +36,7 @@ export function FornecedorPage({ data, fullModules = true }: Props) {
           <>
             <Ticker />
             <WhyAdvertise />
+            <Checklist />
             <CinemaScroll images={images} />
             <Stats />
             <Quote />

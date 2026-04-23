@@ -45,7 +45,7 @@ function buildFormats(images?: { paginaInteira?: string; meiaPagina?: string; um
     {
       name: "PÁGINA INTEIRA",
       short: "FORMATO MASTER",
-      description: "24 meses de domínio absoluto da atenção do lojista.",
+      description: "Domínio total da categoria e autoridade máxima por 24 meses.",
       price: "R$ 15.000",
       monthly: "R$ 625/mês",
       highlight: true,
@@ -55,18 +55,18 @@ function buildFormats(images?: { paginaInteira?: string; meiaPagina?: string; um
     {
       name: "MEIA PÁGINA",
       short: "FORMATO TÁTICO",
-      description: "Destaque tático com alta recorrência visual no PDV.",
-      price: "R$ 8.000",
-      monthly: "R$ 333/mês",
+      description: "O melhor equilíbrio entre custo e visibilidade no PDV.",
+      price: "R$ 10.000",
+      monthly: "R$ 416/mês",
       Icon: PageHalfIcon,
       image: images?.meiaPagina ?? pngMeiaPagina,
     },
     {
       name: "1/4 DE PÁGINA",
       short: "FORMATO ESSENCIAL",
-      description: "Garantia de marca lembrada em cada ciclo de abastecimento.",
-      price: "R$ 4.500",
-      monthly: "R$ 187/mês",
+      description: "Presença garantida no radar de compras a cada ciclo.",
+      price: "R$ 7.000",
+      monthly: "R$ 291/mês",
       Icon: PageQuarterIcon,
       image: images?.umQuarto ?? pngUmQuarto,
     },
@@ -235,8 +235,9 @@ export function Pacotes({ images }: PacotesProps = {}) {
           </Reveal>
           <Reveal variant="fade-left" delay={0.15}>
             <p className="text-white/70 text-base md:text-lg leading-relaxed font-light">
-              Três formatos pensados para diferentes estratégias de exposição. Todos com a mesma distribuição: 48K exemplares, 24 meses no campo,
-              na mão de cada vendedor.
+              Três formatos para diferentes estratégias de exposição. Todos com a mesma distribuição:
+              9.000 clientes impactados, 24 meses no campo (físico + digital), e 100% do seu mix
+              divulgado sem custo adicional.
             </p>
           </Reveal>
         </div>
@@ -248,6 +249,11 @@ export function Pacotes({ images }: PacotesProps = {}) {
         </Reveal>
 
         <Reveal variant="fade-up" delay={0.2} className="mt-12 text-center">
+          <p className="text-white/50 text-sm font-light mb-6 max-w-2xl mx-auto">
+            <span className="text-brand-red font-display tracking-wider">DICA:</span>{" "}
+            Vai anunciar mais de uma marca ou categoria? Fale conosco para negociar um
+            desconto progressivo.
+          </p>
           <a
             href="#cta"
             className="inline-block bg-brand-red text-white px-10 py-4 font-display tracking-widest text-sm hover:-translate-y-0.5 transition-transform"

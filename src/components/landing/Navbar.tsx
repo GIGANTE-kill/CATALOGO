@@ -72,7 +72,7 @@ export function Navbar({ fornecedorLogo, fornecedorNome }: NavbarProps = {}) {
             <img
               src={fornecedorLogo}
               alt={fornecedorNome ?? "Fornecedor"}
-              className="h-7 md:h-10 object-contain"
+              className="h-14 md:h-20 object-contain"
             />
           </div>
         )}

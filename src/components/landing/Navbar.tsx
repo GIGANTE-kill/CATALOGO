@@ -65,14 +65,14 @@ export function Navbar({ fornecedorLogo, fornecedorNome }: NavbarProps = {}) {
         }}
       >
         <div className="flex items-center gap-3.5">
-          <img src={logoDsr} alt="Distribuidora São Roque" className="h-12 md:h-20 object-contain" />
+          <img src={logoDsr} alt="Distribuidora São Roque" className="h-24 md:h-40 object-contain" />
         </div>
         {fornecedorLogo && (
           <div className="flex items-center gap-3.5">
             <img
               src={fornecedorLogo}
               alt={fornecedorNome ?? "Fornecedor"}
-              className="h-14 md:h-20 object-contain"
+              className="h-7 md:h-10 object-contain"
             />
           </div>
         )}

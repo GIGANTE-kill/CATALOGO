@@ -19,32 +19,34 @@ const stats: Stat[] = [
     sub: "Clientes ativos impactados diretamente no momento do pedido.",
   },
   {
-    value: 94,
+    value: 77,
     suffix: "%",
-    label: "DOMÍNIO TERRITORIAL",
-    sub: "De cobertura em todo o estado da Bahia, chegando onde o digital não alcança.",
+    label: "DECISÃO NO FÍSICO",
+    sub: "Dos lojistas decidem o estoque baseados em materiais físicos como o catálogo.",
   },
   {
-    value: 2,
-    suffix: " ANOS",
+    value: 2.5,
+    suffix: "x",
     highlight: true,
-    label: "CICLO DE VIDA",
-    sub: "De exposição garantida. Um único investimento para 24 meses de visibilidade no PDV.",
+    label: "TICKET MÉDIO",
+    sub: "É quanto o uso do catálogo aumenta o volume de compra por pedido.",
   },
   {
-    value: 100,
-    suffix: "%",
-    label: "CONVERSÃO EM CAMPO",
-    sub: "Do time de vendas utiliza o catálogo como guia obrigatório em cada visita.",
+    value: 24,
+    suffix: "h",
+    label: "E-COMMERCE INTEGRADO",
+    sub: "Catálogo virtual integrado ao nosso e-commerce, facilitando o pedido imediato.",
   },
 ];
 
-function formatNumber(n: number) {
-  return n >= 1000 ? n.toLocaleString("pt-BR") : String(n);
+function formatNumber(n: number, isDecimal: boolean) {
+  if (isDecimal) return n.toFixed(1).replace(".", ",");
+  return n >= 1000 ? Math.round(n).toLocaleString("pt-BR") : String(Math.round(n));
 }
 
 function StatCard({ stat }: { stat: Stat }) {
   const { ref, value } = useCountUp(stat.value);
+  const isDecimal = !Number.isInteger(stat.value);
   return (
     <div
       ref={ref}
@@ -56,7 +58,7 @@ function StatCard({ stat }: { stat: Stat }) {
         }`}
       >
         {stat.prefix ?? ""}
-        {formatNumber(Math.round(value))}
+        {formatNumber(value, isDecimal)}
         {stat.suffix}
       </div>
       <div className="text-white/90 text-xs uppercase tracking-[0.25em] mt-6 font-condensed min-h-[2.75rem]">

@@ -7,20 +7,15 @@ import { PresencaTotal } from "@/components/landing/PresencaTotal";
 import { CinemaScroll } from "@/components/landing/CinemaScroll";
 import { MixCompleto } from "@/components/landing/MixCompleto";
 import { Stats } from "@/components/landing/Stats";
-import { Quote } from "@/components/landing/Quote";
 import { Pacotes } from "@/components/landing/Pacotes";
-import { CTAFinal } from "@/components/landing/CTAFinal";
 import { Footer } from "@/components/landing/Footer";
 import { useReveal } from "@/components/landing/useReveal";
-import type { FornecedorData } from "@/data/fornecedores";
+import { useFornecedor } from "@/hooks/useFornecedor";
 
-type Props = {
-  data: FornecedorData;
-  fullModules?: boolean;
-};
-
-export function FornecedorPage({ data, fullModules = true }: Props) {
+export function FornecedorPage() {
   useReveal();
+  const { data, isDefault } = useFornecedor();
+  const fullModules = !isDefault;
 
   const images = {
     paginaInteira: data.anuncioPaginaInteira,
@@ -43,9 +38,7 @@ export function FornecedorPage({ data, fullModules = true }: Props) {
             <CinemaScroll images={images} />
             <MixCompleto />
             <Stats />
-            <Quote />
             <Pacotes images={images} />
-            <CTAFinal />
           </>
         ) : (
           <Pacotes images={images} />

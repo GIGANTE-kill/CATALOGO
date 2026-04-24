@@ -1,6 +1,3 @@
-import paginaInteira from "@/assets/anuncio-pagina-inteira.png";
-import meiaPagina from "@/assets/anuncio-meia-pagina.png";
-import umQuarto from "@/assets/anuncio-um-quarto.png";
 
 export type Scene = {
   kicker: string;
@@ -46,7 +43,7 @@ export function buildScenes(images: SceneImages = {}): Scene[] {
           </div>
         </div>
       ),
-      image: images.paginaInteira ?? paginaInteira,
+      image: images.paginaInteira ?? "/fornecedores/baly/inteira.png",
       imageAlt: "Anúncio página inteira no catálogo DSR",
       glow: "rgba(224,30,43,0.6)",
       rotate: 2,
@@ -75,7 +72,7 @@ export function buildScenes(images: SceneImages = {}): Scene[] {
           </div>
         </div>
       ),
-      image: images.meiaPagina ?? meiaPagina,
+      image: images.meiaPagina ?? "/fornecedores/baly/meia.png",
       imageAlt: "Anúncio meia página no catálogo DSR",
       glow: "rgba(255,214,0,0.6)",
       rotate: -4,
@@ -104,7 +101,7 @@ export function buildScenes(images: SceneImages = {}): Scene[] {
           </div>
         </div>
       ),
-      image: images.umQuarto ?? umQuarto,
+      image: images.umQuarto ?? "/fornecedores/baly/quarto.png",
       imageAlt: "Anúncio um quarto de página no catálogo DSR",
       glow: "rgba(28,63,143,0.7)",
       rotate: 4,

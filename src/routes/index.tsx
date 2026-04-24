@@ -1,7 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { FornecedorPage } from "@/components/landing/FornecedorPage";
-import { defaultFornecedor } from "@/data/fornecedores";
-
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -19,5 +17,5 @@ export const Route = createFileRoute("/")({
       },
     ],
   }),
-  component: () => <FornecedorPage data={defaultFornecedor} fullModules={false} />,
+  component: () => <FornecedorPage />,
 });

@@ -1,0 +1,15 @@
+services:
+  catalogodsr:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: catalogodsr-app
+    restart: always
+    ports:
+      - "8106:3000"
+    networks:
+      - Servidores
+
+networks:
+  Servidores:
+    external: true

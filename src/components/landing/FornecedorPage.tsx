@@ -27,6 +27,9 @@ export function FornecedorPage() {
     <div className="min-h-screen bg-bg text-white font-body">
       <Navbar fornecedorLogo={data.logo} fornecedorNome={data.nome} />
       <main>
+        <div className="bg-red-500 text-white p-4 text-center font-bold text-xl">
+          DEBUG: VERSÃO 4.0 - Lendo URL: {typeof window !== 'undefined' ? window.location.href : 'SSR'}
+        </div>
         <Hero capaImage={data.capa} />
 
         {fullModules ? (

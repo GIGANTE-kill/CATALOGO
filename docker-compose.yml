@@ -10,8 +10,7 @@ services:
     environment:
       - NEXTAUTH_URL=${NEXTAUTH_URL:-http://10.122.83.135:8106}
     networks:
-      Servidores:
-        ipv4_address: 10.122.83.135
+      - Servidores
 
 networks:
   Servidores:

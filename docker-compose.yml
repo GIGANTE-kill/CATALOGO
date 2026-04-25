@@ -10,8 +10,6 @@ services:
       - "8106:8106"
     environment:
       - NEXTAUTH_URL=${NEXTAUTH_URL:-http://10.122.83.135:8106}
-    volumes:
-      - ./src:/app/src
 
     networks:
       - Servidores

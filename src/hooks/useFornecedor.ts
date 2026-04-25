@@ -1,23 +1,37 @@
-import { useSearch } from "@tanstack/react-router";
+import { useState, useEffect } from "react";
 import { fornecedores, defaultFornecedor, type FornecedorData } from "@/constants/fornecedores";
 
 export function useFornecedor() {
-  // Pega o parâmetro da URL (ex: ?fornecedor=bombril)
-  const search = useSearch({ strict: false }) as { fornecedor?: string };
-  const paramSlug = search?.fornecedor?.toLowerCase();
+  // Inicializa o estado lendo DIRETAMENTE a URL do navegador, ignorando o sistema de rotas
+  const [slug, setSlug] = useState<string>(() => {
+    if (typeof window !== "undefined") {
+      const urlParams = new URLSearchParams(window.location.search);
+      const paramSlug = urlParams.get("fornecedor")?.toLowerCase();
+      
+      const hostname = window.location.hostname;
+      const parts = hostname.split(".");
+      const hostSlug = parts[0].toLowerCase();
+      
+      return paramSlug || hostSlug || "dsr";
+    }
+    return "dsr";
+  });
 
-  // Pega o subdomínio (seguro para SSR)
-  const hostname = typeof window !== "undefined" ? window.location.hostname : "";
-  const parts = hostname.split(".");
-  const hostSlug = parts[0].toLowerCase();
+  // Garante que se houver navegação no lado do cliente, ele atualiza
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const urlParams = new URLSearchParams(window.location.search);
+      const paramSlug = urlParams.get("fornecedor")?.toLowerCase();
+      const hostSlug = window.location.hostname.split(".")[0].toLowerCase();
+      
+      const currentSlug = paramSlug || hostSlug || "dsr";
+      if (currentSlug !== slug) {
+        setSlug(currentSlug);
+      }
+    }
+  }, [slug]);
 
-  // Define qual slug usar (parâmetro de URL tem prioridade)
-  const slug = paramSlug || hostSlug;
-
-  // Verifica se o slug é válido e existe nos fornecedores
   const isValid = slug && slug !== "localhost" && fornecedores[slug];
-
-  // Retorna os dados sincronicamente
   const data = isValid ? fornecedores[slug] : defaultFornecedor;
   const isDefault = !isValid;
 

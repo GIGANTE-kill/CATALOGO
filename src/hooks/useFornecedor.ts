@@ -1,34 +1,25 @@
-import { useState, useEffect } from "react";
 import { useSearch } from "@tanstack/react-router";
 import { fornecedores, defaultFornecedor, type FornecedorData } from "@/constants/fornecedores";
 
 export function useFornecedor() {
-  const [data, setData] = useState<FornecedorData>(defaultFornecedor);
-  const [isDefault, setIsDefault] = useState<boolean>(true);
-  
-  // Pegamos o search params de qualquer rota, sem estourar erro se não existir
+  // Pega o parâmetro da URL (ex: ?fornecedor=bombril)
   const search = useSearch({ strict: false }) as { fornecedor?: string };
+  const paramSlug = search?.fornecedor?.toLowerCase();
 
-  useEffect(() => {
-    // Tenta pegar da URL via TanStack Router
-    const paramSlug = search?.fornecedor?.toLowerCase();
+  // Pega o subdomínio (seguro para SSR)
+  const hostname = typeof window !== "undefined" ? window.location.hostname : "";
+  const parts = hostname.split(".");
+  const hostSlug = parts[0].toLowerCase();
 
-    // Depois tenta pelo subdomínio (ex: "baly.saoroque.com" -> "baly")
-    const hostname = window.location.hostname;
-    const parts = hostname.split(".");
-    const hostSlug = parts[0].toLowerCase();
+  // Define qual slug usar (parâmetro de URL tem prioridade)
+  const slug = paramSlug || hostSlug;
 
-    // O slug final é o parâmetro da URL ou o subdomínio
-    const slug = paramSlug || hostSlug;
+  // Verifica se o slug é válido e existe nos fornecedores
+  const isValid = slug && slug !== "localhost" && fornecedores[slug];
 
-    if (slug && slug !== "localhost" && fornecedores[slug]) {
-      setData(fornecedores[slug]);
-      setIsDefault(false);
-    } else {
-      setData(defaultFornecedor);
-      setIsDefault(true);
-    }
-  }, []);
+  // Retorna os dados sincronicamente
+  const data = isValid ? fornecedores[slug] : defaultFornecedor;
+  const isDefault = !isValid;
 
   return { data, isDefault };
 }

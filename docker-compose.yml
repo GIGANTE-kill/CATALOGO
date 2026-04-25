@@ -3,6 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    image: catalogodsr-image:v2
     container_name: catalogodsr-app
     restart: always
     command: npm run dev -- --host 0.0.0.0 --port 8106

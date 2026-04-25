@@ -1,28 +1,31 @@
-import { useLocation } from "@tanstack/react-router";
+import { useState, useEffect } from "react";
 import { fornecedores, defaultFornecedor, type FornecedorData } from "@/constants/fornecedores";
 
 export function useFornecedor() {
-  // Pega a URL de forma reativa e segura para SSR
-  const location = useLocation();
-  
-  // Extrai o parâmetro diretamente da string de busca gerada pelo router
-  const urlParams = new URLSearchParams(location.searchStr);
-  const paramSlug = urlParams.get("fornecedor")?.toLowerCase();
+  const [slug, setSlug] = useState<string>("dsr");
 
-  // Pega o subdomínio (seguro para SSR)
-  const hostname = typeof window !== "undefined" ? window.location.hostname : "";
-  const parts = hostname.split(".");
-  const hostSlug = parts[0].toLowerCase();
+  useEffect(() => {
+    // 1. Tenta pegar o hash da URL (ex: #bombril) -> 100% à prova de falhas do Router
+    const hashSlug = window.location.hash.replace("#", "").toLowerCase();
 
-  // Define qual slug usar
-  const slug = paramSlug || hostSlug;
+    // 2. Tenta pegar o parâmetro (ex: ?fornecedor=bombril)
+    const params = new URLSearchParams(window.location.search);
+    const paramSlug = params.get("fornecedor")?.toLowerCase();
 
-  // Valida o slug
-  const isValid = slug && slug !== "localhost" && fornecedores[slug];
+    // 3. Tenta pelo subdomínio
+    const hostname = window.location.hostname;
+    const hostSlug = hostname.split(".")[0].toLowerCase();
 
-  // Retorna os dados sincronicamente
-  const data = isValid ? fornecedores[slug] : defaultFornecedor;
-  const isDefault = !isValid;
+    // Prioridade: Hash > Param > Subdomínio
+    const currentSlug = hashSlug || paramSlug || hostSlug;
+
+    if (currentSlug && currentSlug !== "localhost" && fornecedores[currentSlug]) {
+      setSlug(currentSlug);
+    }
+  }, []);
+
+  const data = fornecedores[slug] || defaultFornecedor;
+  const isDefault = slug === "dsr" || !fornecedores[slug];
 
   return { data, isDefault };
 }

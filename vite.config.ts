@@ -9,5 +9,8 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 export default defineConfig({
   server: {
     allowedHosts: true,
+    host: true,
+    port: 8106,
+    strictPort: true,
   },
 });

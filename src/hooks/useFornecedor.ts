@@ -1,37 +1,26 @@
-import { useState, useEffect } from "react";
+import { useLocation } from "@tanstack/react-router";
 import { fornecedores, defaultFornecedor, type FornecedorData } from "@/constants/fornecedores";
 
 export function useFornecedor() {
-  // Inicializa o estado lendo DIRETAMENTE a URL do navegador, ignorando o sistema de rotas
-  const [slug, setSlug] = useState<string>(() => {
-    if (typeof window !== "undefined") {
-      const urlParams = new URLSearchParams(window.location.search);
-      const paramSlug = urlParams.get("fornecedor")?.toLowerCase();
-      
-      const hostname = window.location.hostname;
-      const parts = hostname.split(".");
-      const hostSlug = parts[0].toLowerCase();
-      
-      return paramSlug || hostSlug || "dsr";
-    }
-    return "dsr";
-  });
+  // Pega a URL de forma reativa e segura para SSR
+  const location = useLocation();
+  
+  // Extrai o parâmetro diretamente da string de busca gerada pelo router
+  const urlParams = new URLSearchParams(location.searchStr);
+  const paramSlug = urlParams.get("fornecedor")?.toLowerCase();
 
-  // Garante que se houver navegação no lado do cliente, ele atualiza
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const urlParams = new URLSearchParams(window.location.search);
-      const paramSlug = urlParams.get("fornecedor")?.toLowerCase();
-      const hostSlug = window.location.hostname.split(".")[0].toLowerCase();
-      
-      const currentSlug = paramSlug || hostSlug || "dsr";
-      if (currentSlug !== slug) {
-        setSlug(currentSlug);
-      }
-    }
-  }, [slug]);
+  // Pega o subdomínio (seguro para SSR)
+  const hostname = typeof window !== "undefined" ? window.location.hostname : "";
+  const parts = hostname.split(".");
+  const hostSlug = parts[0].toLowerCase();
 
+  // Define qual slug usar
+  const slug = paramSlug || hostSlug;
+
+  // Valida o slug
   const isValid = slug && slug !== "localhost" && fornecedores[slug];
+
+  // Retorna os dados sincronicamente
   const data = isValid ? fornecedores[slug] : defaultFornecedor;
   const isDefault = !isValid;
 

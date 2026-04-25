@@ -65,6 +65,31 @@ export const fornecedores: Record<string, FornecedorData> = {
     anuncioMeiaPagina: "/fornecedores/dsr/meia.png",
     anuncioUmQuarto: "/fornecedores/dsr/quarto.png",
   },
+  baruel: {
+    nome: "Baruel",
+    logo: "/fornecedores/baruel/logo.png",
+    capa: "/fornecedores/baruel/capa.png",
+    anuncioPaginaInteira: "/fornecedores/baruel/inteira.png",
+    anuncioMeiaPagina: "/fornecedores/baruel/meia.png",
+    anuncioUmQuarto: "/fornecedores/baruel/quarto.png",
+  },
+  bombril: {
+    nome: "Bombril",
+    logo: "/fornecedores/bombril/logo.png",
+    capa: "/fornecedores/bombril/capa.png",
+    anuncioPaginaInteira: "/fornecedores/bombril/inteira.png",
+    anuncioMeiaPagina: "/fornecedores/bombril/meia.png",
+    anuncioUmQuarto: "/fornecedores/bombril/quarto.png",
+  },
+  pergola: {
+    nome: "Pergola",
+    logo: "/fornecedores/pergola/logo.png",
+    capa: "/fornecedores/pergola/capa.png",
+    anuncioPaginaInteira: "/fornecedores/pergola/inteira.png",
+    anuncioMeiaPagina: "/fornecedores/pergola/meia.png",
+    anuncioUmQuarto: "/fornecedores/pergolasul/quarto.png",
+  },
+  
 };
 
 export const defaultFornecedor = fornecedores.dsr;

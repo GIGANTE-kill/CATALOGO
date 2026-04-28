@@ -30,7 +30,8 @@ export const getFornecedorData = (slug?: string): FornecedorData => {
     renata:"Renata",
     santher: "Santher",
     salon_line: "Salon Line",
-  };
+    dom_vitorio:"Dom Vitório",
+    };
 
   const nome = nomesEspeciais[normalizedSlug] || normalizedSlug.charAt(0).toUpperCase() + normalizedSlug.slice(1);
 

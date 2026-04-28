@@ -9,4 +9,5 @@ services:
     ports:
       - "8106:8106"
     environment:
-      - NEXTAUTH_URL=${NEXTAUTH_URL:-http://159.223.161.112:8106}
+      -NEXTAUTH_URL=${NEXTAUTH_URL:-http://159.223.161.112:8106}
+    pull_policy: always

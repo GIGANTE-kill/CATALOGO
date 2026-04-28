@@ -17,16 +17,16 @@ const pillars = [
   {
     number: "03",
     title: "DOMÍNIO TERRITORIAL",
-    highlight: "94%",
+    highlight: "Mais de 90%",
     highlightLabel: "DOS MUNICÍPIOS BAIANOS",
-    text: "Sua marca presente em 94% dos municípios baianos. Garantimos que sua comunicação chegue onde a venda acontece, do grande centro ao interior.",
+    text: "Sua marca presente em mais de 90% dos municípios baianos. Garantimos que sua comunicação chegue onde a venda acontece, do grande centro ao interior.",
   },
   {
     number: "04",
-    title: "INVESTIMENTO DE LONGO PRAZO",
-    highlight: "2 ANOS",
-    highlightLabel: "DE EXPOSIÇÃO CONTÍNUA",
-    text: "Um único investimento com 24 meses de exposição. O catálogo acompanha o ciclo de vendas do nosso time por dois anos, garantindo o menor custo por impacto do mercado.",
+    title: "MÁXIMA EXPOSIÇÃO",
+    highlight: "IMPACTO",
+    highlightLabel: "E VISIBILIDADE",
+    text: "Um investimento único que gera visibilidade persistente. O catálogo acompanha o ritmo de vendas do nosso time, garantindo que seu produto tenha destaque constante exatamente onde o lojista toma as decisões de compra.",
   },
 ];
 

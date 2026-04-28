@@ -4,14 +4,14 @@ const pillars = [
   {
     tag: "IMPRESSO",
     title: "VITRINE FÍSICA NO PDV",
-    desc: "A ferramenta de campo que nosso vendedor leva em mãos para 9.000 clientes. Uma vitrine física que dura 24 meses no ponto de venda.",
+    desc: "A ferramenta de campo que nosso vendedor leva em mãos para 9.000 clientes. Uma vitrine física constante no ponto de venda.",
     metric: "9.000",
     metricLabel: "CLIENTES IMPACTADOS",
   },
   {
     tag: "DIGITAL INTERATIVO",
     title: "DISPONÍVEL 24H NO SITE",
-    desc: "Diferente do papel, o digital é editável e atualizado em tempo real para acompanhar suas estratégias de preço e estoque.",
+    desc: "Diferente do papel, o digital é atualizado em tempo real para acompanhar suas estratégias de preço e estoque.",
     metric: "24h",
     metricLabel: "SEMPRE ATIVO",
     highlight: true,

@@ -42,7 +42,7 @@ function buildFormats(images?: { paginaInteira?: string; meiaPagina?: string; um
     {
       name: "PÁGINA INTEIRA",
       short: "FORMATO MASTER",
-      description: "Domínio total da categoria e autoridade máxima por 24 meses.",
+      description: "Domínio total da categoria e autoridade máxima.",
       price: "R$ 15.000",
       monthly: "R$ 625/mês",
       highlight: true,
@@ -180,21 +180,6 @@ function InlineFormatCard({ format }: { format: Format }) {
           </div>
         </div>
         
-        <div className="flex items-baseline justify-between gap-3 pt-2">
-          <span className="font-display text-white/40 text-xs tracking-[0.25em] shrink-0">
-            EQUIVALE A
-          </span>
-          <span className="font-display text-base text-white/80 whitespace-nowrap">{format.monthly}</span>
-        </div>
-
-        <div className="flex items-baseline justify-between gap-3 pt-2 border-t border-white/5">
-          <span className="font-display text-white/40 text-xs tracking-[0.25em] shrink-0">
-            EXPOSIÇÃO
-          </span>
-          <span className="font-display text-sm text-white/80 tracking-wider whitespace-nowrap">
-            24 MESES
-          </span>
-        </div>
       </div>
     </RevealItem>
   );
@@ -262,8 +247,7 @@ export function Pacotes({ images }: PacotesProps = {}) {
           <Reveal variant="fade-left" delay={0.15}>
             <p className="text-white/70 text-base md:text-lg leading-relaxed font-light">
               Três formatos para diferentes estratégias de exposição. Todos com a mesma distribuição:
-              9.000 clientes impactados, 24 meses no campo (físico + digital), e 100% do seu mix
-              divulgado sem custo adicional.
+              9.000 clientes impactados e 100% do seu mix divulgado sem custo adicional.
             </p>
           </Reveal>
         </div>

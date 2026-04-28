@@ -1,6 +1,5 @@
 const items = [
   "+500 catálogos distribuídos",
-  "24 meses no campo",
   "Catálogo na mão de cada vendedor",
   "Sua marca no ponto de decisão",
   "Distribuidora São Roque",

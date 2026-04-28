@@ -25,7 +25,7 @@ export const getFornecedorData = (slug?: string): FornecedorData => {
     raymundo: "Raymundo",
     baruel: "Baruel",
     bombril: "Bombril",
-    pergola: "Pergola",
+    pergola: "Pérgola",
     assim: "Assim",
     renata:"Renata",
     santher: "Santher",

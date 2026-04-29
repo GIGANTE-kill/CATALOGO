@@ -69,12 +69,7 @@ export function Navbar({ fornecedorLogo, fornecedorNome }: NavbarProps = {}) {
         </div>
         {fornecedorLogo && (
           <div className="flex items-center gap-6">
-            <a 
-              href="#pacotes" 
-              className="hidden md:block font-display text-[11px] tracking-[0.2em] text-white hover:text-brand-red transition-colors font-black"
-            >
-              INVESTIMENTOS
-            </a>
+
             <img
               src={fornecedorLogo}
               alt={fornecedorNome ?? "Fornecedor"}

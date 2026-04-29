@@ -9,6 +9,7 @@ import { MixCompleto } from "@/components/landing/MixCompleto";
 import { Stats } from "@/components/landing/Stats";
 import { Pacotes } from "@/components/landing/Pacotes";
 import { Footer } from "@/components/landing/Footer";
+import { QuickAccess } from "@/components/landing/QuickAccess";
 import { useReveal } from "@/components/landing/useReveal";
 import { useFornecedor } from "@/hooks/useFornecedor";
 
@@ -45,6 +46,7 @@ export function FornecedorPage() {
         )}
       </main>
       <Footer />
+      <QuickAccess />
     </div>
   );
 }

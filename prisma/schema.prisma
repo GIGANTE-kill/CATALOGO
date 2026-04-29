@@ -1,0 +1,132 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  passwordHash String
+  name         String
+  role         Role
+  promotor     Promotor?
+  supervisor   Supervisor?
+}
+
+enum Role {
+  ADMIN
+  SUPERVISOR
+  PROMOTOR
+}
+
+model Promotor {
+  id           Int        @id @default(autoincrement())
+  userId       Int        @unique
+  user         User       @relation(fields: [userId], references: [id])
+  supervisorId Int
+  supervisor   Supervisor @relation(fields: [supervisorId], references: [id])
+  stores       Store[]    @relation("PromotorStores")
+  activities   Activity[]
+  locationLogs LocationLog[]
+  checklists   ChecklistAssignment[]
+}
+
+model Supervisor {
+  id                 Int        @id @default(autoincrement())
+  userId             Int        @unique
+  user               User       @relation(fields: [userId], references: [id])
+  promotores         Promotor[]
+  checklistTemplates ChecklistTemplate[]
+}
+
+model Store {
+  id         Int        @id @default(autoincrement())
+  name       String
+  address    String?
+  promotores Promotor[] @relation("PromotorStores")
+}
+
+model LocationLog {
+  id         Int        @id @default(autoincrement())
+  promotorId Int
+  promotor   Promotor   @relation(fields: [promotorId], references: [id])
+  date       DateTime
+  period     PeriodEnum
+  storeId    Int
+  store      Store      @relation(fields: [storeId], references: [id])
+  notes      String?
+}
+
+enum PeriodEnum {
+  MORNING
+  AFTERNOON
+}
+
+model Activity {
+  id            Int            @id @default(autoincrement())
+  promotorId    Int
+  promotor      Promotor       @relation(fields: [promotorId], references: [id])
+  storeId       Int
+  store         Store          @relation(fields: [storeId], references: [id])
+  date          DateTime
+  description   String
+  status        ActivityStatus
+  justification String?
+  photoUrl      String?
+  createdAt     DateTime       @default(now())
+}
+
+enum ActivityStatus {
+  DONE
+  NOT_DONE
+  IN_PROGRESS
+}
+
+model ChecklistTemplate {
+  id           Int           @id @default(autoincrement())
+  supervisorId Int
+  supervisor   Supervisor    @relation(fields: [supervisorId], references: [id])
+  title        String
+  description  String?
+  frequency    FrequencyEnum
+  items        ChecklistItem[]
+}
+
+enum FrequencyEnum {
+  DAILY
+  WEEKLY
+}
+
+model ChecklistItem {
+  id          Int               @id @default(autoincrement())
+  templateId  Int
+  template    ChecklistTemplate @relation(fields: [templateId], references: [id])
+  description String
+  order       Int
+}
+
+model ChecklistAssignment {
+  id          Int            @id @default(autoincrement())
+  promotorId  Int
+  promotor    Promotor       @relation(fields: [promotorId], references: [id])
+  templateId  Int
+  template    ChecklistTemplate @relation(fields: [templateId], references: [id])
+  weekStart   DateTime
+  results     ChecklistResult[]
+}
+
+model ChecklistResult {
+  id            Int            @id @default(autoincrement())
+  assignmentId  Int
+  assignment    ChecklistAssignment @relation(fields: [assignmentId], references: [id])
+  itemId        Int
+  item          ChecklistItem @relation(fields: [itemId], references: [id])
+  status        ActivityStatus
+  justification String?
+  photoUrl      String?
+  completedAt   DateTime?
+}

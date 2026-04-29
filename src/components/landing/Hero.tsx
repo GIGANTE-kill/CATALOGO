@@ -82,8 +82,17 @@ export function Hero({ capaImage }: HeroProps = {}) {
           </p>
 
 
+          <div className="reveal order-6 md:order-none pt-4 flex flex-wrap gap-4" style={{ transitionDelay: "0.3s" }}>
+            <a
+              href="#pacotes"
+              className="group relative inline-flex items-center justify-center gap-4 px-12 py-6 bg-brand-red text-white font-display font-black tracking-[0.25em] text-2xl md:text-3xl rounded-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_25px_50px_rgba(224,30,43,0.5)] border-2 border-brand-red/20"
+            >
+              💰 VER INVESTIMENTOS
+            </a>
+          </div>
+
           <div className="reveal order-7 md:order-none pt-2 md:pt-8 flex items-center gap-3 text-brand-muted text-xs font-condensed tracking-widest uppercase" style={{ transitionDelay: "0.5s" }}>
-            <span>Role para descobrir</span>
+            <span>Ou role para descobrir</span>
             <div className="flex flex-col animate-scroll-hint">
               <span>↓</span>
             </div>

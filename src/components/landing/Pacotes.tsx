@@ -168,10 +168,10 @@ function InlineFormatCard({ format }: { format: Format }) {
               <div className="absolute inset-0 bg-brand-red blur-md opacity-30 animate-pulse rounded-lg" />
             )}
             <span 
-              className={`relative flex items-center justify-center px-4 py-2 font-display font-bold text-2xl sm:text-3xl whitespace-nowrap rounded-lg border backdrop-blur-sm transition-all duration-300 hover:scale-105 cursor-default text-white ${
+              className={`relative flex items-center justify-center px-8 py-3 font-display font-black text-2xl sm:text-4xl whitespace-nowrap rounded-lg border-2 transition-all duration-300 hover:scale-105 cursor-default text-white ${
                 format.highlight 
-                  ? "bg-brand-red border-brand-red shadow-[0_0_20px_rgba(224,30,43,0.6)]" 
-                  : "bg-brand-red/80 border-brand-red/50 shadow-[0_0_15px_rgba(224,30,43,0.2)] hover:bg-brand-red"
+                  ? "bg-brand-red border-white/20 shadow-[0_0_30px_rgba(224,30,43,0.6)]" 
+                  : "bg-brand-red/90 border-white/10 shadow-[0_0_20px_rgba(224,30,43,0.3)] hover:bg-brand-red"
               }`}
               style={{ animation: "float-price 3s ease-in-out infinite" }}
             >

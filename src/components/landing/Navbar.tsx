@@ -68,7 +68,13 @@ export function Navbar({ fornecedorLogo, fornecedorNome }: NavbarProps = {}) {
           <img src={logoDsr} alt="Distribuidora São Roque" className="h-12 md:h-20 object-contain" />
         </div>
         {fornecedorLogo && (
-          <div className="flex items-center gap-3.5">
+          <div className="flex items-center gap-6">
+            <a 
+              href="#pacotes" 
+              className="hidden md:block font-display text-[11px] tracking-[0.2em] text-white hover:text-brand-red transition-colors font-black"
+            >
+              INVESTIMENTOS
+            </a>
             <img
               src={fornecedorLogo}
               alt={fornecedorNome ?? "Fornecedor"}
